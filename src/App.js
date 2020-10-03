@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import axios from "axios";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import axios from "axios";
+
+import Players from './Players.js';
 import Category from './Category.js';
 
 class App extends Component {
@@ -24,7 +26,6 @@ class App extends Component {
       }
     }).then(response => {
       const res = response.data.results;
-      // console.log(response.data.results);
       this.setState({
         questions: res,
       })
@@ -37,24 +38,25 @@ class App extends Component {
     this.setState({
       players: event.target.value,
     })
-    // console.log(this.state);
   }
+
   render() {
     console.log(this.state.players);
   return (
     <div className="App">
       <form>
         <fieldset>
-        <label htmlFor="">Number of players: </label>
-        <select onChange={this.handleChange}>
-        <option disabled selected className="default">Number of Players</option>
-        <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
+          <label htmlFor="">Number of players: </label>
+          <select onChange={this.handleChange}>
+            <option disabled selected className="default">Number of Players</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
         </fieldset>
       </form>
+      <Players numberOfPlayers={this.state.players}/>
       <Category />
     </div>
   );
