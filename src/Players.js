@@ -64,19 +64,22 @@ class Players extends Component {
     );
   };
 
+  sendData() {
+    this.props.getPlayerInformation(this.state.players)
+  }
+
   render() {
+    this.sendData();
     return (
-      //   <form className="playerForm">
-      //     {/* Hey react we chose 3 players so let's make 3 divs with forms in them so we can submit the names and save them in the state. */}
-      //     {/* {this.generatePlayers(this.props.numberOfPlayers)} */}
-      //     <button onClick={this.generatePlayers}></button>
+
       <>
         <form>
           <button onClick={(e) => { this.generatePlayers(e, this.props.numberOfPlayers) }}>Click me</button>
-
-
         </form>
-        <Category playerInfo={this.state.players} />
+
+
+
+        {/* <Category playerInfo={this.state.players} /> */}
       </>
     );
   }

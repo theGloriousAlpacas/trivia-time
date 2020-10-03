@@ -22,6 +22,12 @@ class App extends Component {
     })
   }
 
+  updatedPlayersInformation = (players) => {
+    this.setState({
+      players: players
+    })
+  }
+
   render() {
     // console.log(this.state.players);
     return (
@@ -38,7 +44,8 @@ class App extends Component {
             </select>
           </fieldset>
         </form>
-        <Players numberOfPlayers={this.state.players} />
+        {/* <Players numberOfPlayers={this.state.players} blobloblobo={this.props.players} /> */}
+        <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation(players)} />
 
       </div>
     );
