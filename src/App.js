@@ -29,7 +29,7 @@ class App extends Component {
       this.setState({
         questions: res,
       })
-      console.log(this.state.questions)
+      // console.log(this.state.questions)
     })
   }
 
@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.players);
+    // console.log(this.state.players);
   return (
     <div className="App">
       <form>
