@@ -3,15 +3,18 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
 
+import Header from './Header.js'
+import Footer from './Footer.js'
 import Players from './Players.js';
 import Category from './Category.js';
+import ScoreBoard from './ScoreBoard.js';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       questions: {},
-      players: '',
+      players: ''
     }
   }
 
@@ -28,10 +31,22 @@ class App extends Component {
     })
   }
 
+  // Event Listener for Play Again button
+    // Resets state to be empty so players can start again
+    // Confirm all key value pairs in state
+  handleReset = (event) => {
+    event.preventDefault();
+    this.setState({
+      questions: {},
+      players: ''
+    })
+  }
+
   render() {
     // console.log(this.state.players);
     return (
       <div className="App">
+        <Header />
         <form>
           <fieldset>
             <label htmlFor="">Number of players: </label>
@@ -45,7 +60,12 @@ class App extends Component {
           </fieldset>
         </form>
         {/* <Players numberOfPlayers={this.state.players} blobloblobo={this.props.players} /> */}
-        <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation(players)} />
+        <Players numberOfPlayers={this.state.players}  />
+        <Category />
+        <ScoreBoard 
+          handleReset={this.handleReset}
+        />
+        <Footer />
 
       </div>
     );

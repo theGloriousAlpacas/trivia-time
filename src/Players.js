@@ -64,12 +64,12 @@ class Players extends Component {
     );
   };
 
-  sendData() {
-    this.props.getPlayerInformation(this.state.players)
-  }
+  // sendData() {
+  //   this.props.getPlayerInformation(this.state.players)
+  // }
 
   render() {
-    this.sendData();
+    // this.sendData();
     return (
 
       <>

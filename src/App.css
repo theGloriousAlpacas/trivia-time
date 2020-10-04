@@ -36,3 +36,43 @@
     transform: rotate(360deg);
   }
 }
+
+ul {
+  list-style: none;
+}
+
+.results {
+  display: flex;
+  justify-content: center;
+}
+
+.results h3 {
+  font-size: 2rem;
+  padding: 0 3%;
+}
+
+.results p {
+  font-size: 2rem;
+}
+
+
+img {
+  max-width: 200px;
+}
+
+footer {
+  color: white;
+  background-color: black;
+  margin: 1% 0;
+  padding: 1%;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #6056f9;
+}
