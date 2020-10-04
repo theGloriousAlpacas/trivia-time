@@ -60,12 +60,8 @@ class App extends Component {
           </fieldset>
         </form>
         {/* <Players numberOfPlayers={this.state.players} blobloblobo={this.props.players} /> */}
-        <Players numberOfPlayers={this.state.players}  />
-        <Category />
-        <ScoreBoard 
-          handleReset={this.handleReset}
-        />
-        <Footer />
+        {/* <Players numberOfPlayers={this.state.players} getPlayerInformation={(players) => this.updatedPlayersInformation(players)} /> */}
+        <Category playerInfo={[1,2,3,4]} />
 
       </div>
     );

@@ -6,8 +6,19 @@ class Players extends Component {
     super();
     this.state = {
       players: [],
+      isShowingAvatars: false
     }
   }
+
+
+  // const color = [red, blue, green, yellow, purple, brown, pink];
+  getAvatars = () => {
+    return [
+    "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=blue",
+    "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=red",
+    "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=yellow",
+    "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=purple"
+  ]};
 
   // componentDidMount() {
   //   axios({
@@ -23,16 +34,36 @@ class Players extends Component {
   //   })
   // }
 
-  generatePlayers = (e, numberOfPlayers) => {
+  generatePlayers = () => {
+    if (this.state.isShowingAvatars) {
+      const players = this.state.players;
+      let avatars = this.getAvatars();
+      console.log(avatars);
+      return (
+        <div>
+          {players.map((player, index) => {
+            return (
+              <div>
+                <img src={player.img} alt="" />
+                <input id={player.id} />
+              </div>
+            )
+          })}
+        </div>
+      );
+    } else {
+      return <></>
+    }
+  };
+
+  updatePlayers = (e, numberOfPlayers) => {
     e.preventDefault();
+    this.setState({
+      isShowingAvatars: true
+    })
+
     let players = [];
-    // const color = [red, blue, green, yellow, purple, brown, pink];
-    const avatars = [
-      "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=blue",
-      "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=red",
-      "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=yellow",
-      "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=purple"
-    ];
+    let avatars = this.getAvatars();
 
     for (let i = 0; i < numberOfPlayers; i++) {
       players.push(i);
@@ -50,31 +81,18 @@ class Players extends Component {
       players: stateArray
     })
 
-    return (
-      <div>
-        {players.map((player, index) => {
-          return (
-            <div>
-              <input id={player + 1} />;
-              <img src={avatars[player]} alt="" />
-            </div>
-          )
-        })}
-      </div>
-    );
-  };
+  }
 
   // sendData() {
   //   this.props.getPlayerInformation(this.state.players)
   // }
 
   render() {
-    // this.sendData();
     return (
-
       <>
         <form>
-          <button onClick={(e) => { this.generatePlayers(e, this.props.numberOfPlayers) }}>Click me</button>
+          <button onClick={(e) => this.updatePlayers(e, this.props.numberOfPlayers)}>Click me</button>
+          {this.generatePlayers()}
         </form>
 
 
