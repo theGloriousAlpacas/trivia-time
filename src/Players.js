@@ -90,6 +90,7 @@ class Players extends Component {
 
     currentState.forEach((player, index) => {
       player.name = names[index]
+      player.score = 0
     })
 
     this.setState({
