@@ -63,7 +63,7 @@ class App extends Component {
 
         <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
         <Category playerInfo={this.state.players} />
-        {/* <Timer /> */}
+        <Timer />
       </div>
     );
   }

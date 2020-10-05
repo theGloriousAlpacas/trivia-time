@@ -60,6 +60,24 @@ img {
   max-width: 200px;
 }
 
+.timerOk {
+  display: inline-block;
+  padding: 2%;
+  background-color: green;
+}
+
+.timerWrapUp {
+  display: inline-block;
+  padding: 2%;
+  background-color: yellow;
+}
+
+.timerDanger {
+  display: inline-block;
+  padding: 2%;
+  background-color: red;
+}
+
 footer {
   color: white;
   background-color: black;
@@ -76,3 +94,4 @@ footer a:hover,
 footer a:focus {
   color: #6056f9;
 }
+

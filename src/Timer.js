@@ -35,11 +35,23 @@ class Timer extends Component {
     }
 
     render() {
-        const timer = this.state.timer
+        // let timer = this.state.timer
+
+        // Setting styles for timer
+        let timer = () => {   
+            if (this.state.timer >= 15) {
+                return <p className="timerOk">{this.state.timer}</p>
+            } else if (this.state.timer >= 10) {
+                return <p className="timerWrapUp">{this.state.timer}</p>
+            } else {
+                return <p className="timerDanger">{this.state.timer}</p>
+            }
+        }
+
         return (
             <>
                 <h1>Hello this is the Timer</h1>
-                <p>{timer}</p>
+                <p>{timer()}</p>
             </>
         )
     }
