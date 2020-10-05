@@ -20,33 +20,24 @@ class Players extends Component {
     ]
   };
 
-  handleChange = (e) => {
-    e.preventDefault()
-    console.log(e.target.value)
-
-    const names = []
-
-    this.setState({
-
-    })
-  }
-
   generatePlayers = () => {
     if (this.state.isShowingAvatars) {
       const players = this.state.players;
       let avatars = this.getAvatars();
-      console.log(avatars);
       return (
-        <div>
-          {players.map((player, index) => {
-            return (
-              <div>
-                <img src={player.img} alt="" />
-                <input onChange={this.handleChange} id={player.id} />
-              </div>
-            )
-          })}
-        </div>
+        <>
+          <div>
+            {players.map((player, index) => {
+              return (
+                <div>
+                  <img src={player.img} alt="" />
+                  <input className={`name-${index + 1}`} onChange={this.handleChange} id={player.id} />
+                </div>
+              )
+            })}
+          </div>
+          <button onClick={(e) => this.nameSubmit(e)}>PUSH ITEMS</button>
+        </>
       );
     } else {
       return <></>
@@ -84,13 +75,35 @@ class Players extends Component {
     this.props.getPlayerInformation(this.state.players)
   }
 
+  nameSubmit = (e) => {
+    e.preventDefault()
+
+    const names = []
+    let playerName
+
+    for (let i = 0; i < this.state.players.length; i++) {
+      playerName = document.querySelector(`.name-${i + 1}`).value
+      names.push(playerName)
+    }
+
+    const currentState = this.state.players
+
+    currentState.forEach((player, index) => {
+      player.name = names[index]
+    })
+
+    this.setState({
+      players: currentState
+    })
+  }
+
   render() {
     return (
       <>
         <form>
           <button onClick={(e) => this.updatePlayers(e, this.props.numberOfPlayers)}>Click me</button>
           {this.generatePlayers()}
-          <button onSubmit={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>STATE</button>
+          <button onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>STATE</button>
         </form>
 
       </>

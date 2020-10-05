@@ -22,7 +22,6 @@ class App extends Component {
     })
   }
 
-
   updatedPlayersInformation = (e, players) => {
     e.preventDefault();
     this.setState({
