@@ -25,7 +25,6 @@ class App extends Component {
     })
   }
 
-
   updatedPlayersInformation = (e, players) => {
     e.preventDefault();
     this.setState({
@@ -62,7 +61,7 @@ class App extends Component {
         </form>
 
         <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
-        <Category playerInfo={[1, 2, 3, 4]} />
+        <Category playerInfo={this.state.players} />
       </div>
     );
   }

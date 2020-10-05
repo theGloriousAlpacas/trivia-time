@@ -23,10 +23,32 @@ class Category extends Component {
                 category: selectedCategory,
                 difficulty: 'easy',
                 type: 'multiple',
+                // encode: 'base64'
             }
         }).then(response => {
             const res = response.data.results;
-            console.log(res);
+            // console.log(res);
+            // Use DOMParser to get real string
+            //https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+            const parser = new DOMParser();
+            res.map( (question) => {
+                question.incorrect_answers.forEach((incorrectAnswer, index) => {
+                    const dom = parser.parseFromString(incorrectAnswer, "text/html")
+                    const newString = dom.body.textContent;
+                    question.incorrect_answers[index] = newString;
+                });
+                const oldString = question.correct_answer
+                const dom = parser.parseFromString(oldString, "text/html")
+                console.log(dom)
+                const newString = dom.body.textContent;
+                question.correct_answer = newString
+            })
+            res.map( (question) => {
+                const oldString = question.question;
+                const dom = parser.parseFromString(oldString, "text/html")
+                const newString = dom.body.textContent;
+                question.question = newString
+            })
             this.setState({
                 players: playerInfo,
                 questions: res,
@@ -48,15 +70,15 @@ class Category extends Component {
             console.log("No questions yet")
             return <></>
         } else {
-            console.log(this.state.questions)
+            // console.log(this.state.questions)
             const question = this.state.questions[this.state.currentQuestion]
-            console.log(question)
+            // console.log(question)
             const allAnswers = [...question.incorrect_answers, question.correct_answer]
             // randomize allAnswers?
             return <div>
                     <h2>{question.question}</h2>
                         {allAnswers.map((answer) => {
-                            console.log(this);
+                            // console.log(this);
                             return <button onClick={() => this.onAnswerClicked(question, answer)}>
                                 {answer}
                             </button>
