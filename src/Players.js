@@ -25,19 +25,16 @@ class Players extends Component {
       const players = this.state.players;
       let avatars = this.getAvatars();
       return (
-        <>
-          <div>
-            {players.map((player, index) => {
-              return (
-                <div>
-                  <img src={player.img} alt="" />
-                  <input className={`name-${index + 1}`} onChange={this.handleChange} id={player.id} />
-                </div>
-              )
-            })}
-          </div>
-          <button onClick={(e) => this.nameSubmit(e)}>PUSH ITEMS</button>
-        </>
+        <div>
+          {players.map((player, index) => {
+            return (
+              <div>
+                <img src={player.img} alt="" />
+                <input className={`name-${index + 1}`} onChange={this.handleChange} id={player.id} />
+              </div>
+            )
+          })}
+        </div>
       );
     } else {
       return <></>
@@ -71,10 +68,6 @@ class Players extends Component {
 
   }
 
-  // sendData() {
-  //   this.props.getPlayerInformation(this.state.players)
-  // }
-
   nameSubmit = (e) => {
     e.preventDefault()
 
@@ -104,7 +97,10 @@ class Players extends Component {
         <form>
           <button onClick={(e) => this.updatePlayers(e, this.props.numberOfPlayers)}>Click me</button>
           {this.generatePlayers()}
-          <button onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>STATE</button>
+          <button onClick={(e) => {
+            this.props.getPlayerInformation(e, this.state.players);
+            this.nameSubmit(e)
+          }}>Continue</button>
         </form>
 
       </>
