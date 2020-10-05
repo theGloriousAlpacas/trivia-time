@@ -25,7 +25,9 @@ class App extends Component {
     })
   }
 
-  updatedPlayersInformation = (players) => {
+
+  updatedPlayersInformation = (e, players) => {
+    e.preventDefault();
     this.setState({
       players: players
     })
@@ -43,7 +45,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.players);
     return (
       <div className="App">
         <Header />
@@ -59,10 +60,9 @@ class App extends Component {
             </select>
           </fieldset>
         </form>
-        {/* <Players numberOfPlayers={this.state.players} blobloblobo={this.props.players} /> */}
-        {/* <Players numberOfPlayers={this.state.players} getPlayerInformation={(players) => this.updatedPlayersInformation(players)} /> */}
-        <Category playerInfo={[1,2,3,4]} />
 
+        <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
+        <Category playerInfo={[1, 2, 3, 4]} />
       </div>
     );
   }

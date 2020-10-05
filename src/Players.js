@@ -10,29 +10,26 @@ class Players extends Component {
     }
   }
 
-
   // const color = [red, blue, green, yellow, purple, brown, pink];
   getAvatars = () => {
     return [
-    "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=blue",
-    "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=red",
-    "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=yellow",
-    "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=purple"
-  ]};
+      "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=blue",
+      "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=red",
+      "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=yellow",
+      "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=purple"
+    ]
+  };
 
-  // componentDidMount() {
-  //   axios({
-  //     url:'https://avatars.dicebear.com/api/bottts/example.svg?mood[]=happy',
-  //     // params: {
-  //     //   amount: 12,
-  //     //   category: 9,
-  //     //   difficulty: 'easy',
-  //     //   type: 'multiple',
-  //     // }
-  //   }).then(response => {
-  //     console.log("hi");
-  //   })
-  // }
+  handleChange = (e) => {
+    e.preventDefault()
+    console.log(e.target.value)
+
+    const names = []
+
+    this.setState({
+
+    })
+  }
 
   generatePlayers = () => {
     if (this.state.isShowingAvatars) {
@@ -45,7 +42,7 @@ class Players extends Component {
             return (
               <div>
                 <img src={player.img} alt="" />
-                <input id={player.id} />
+                <input onChange={this.handleChange} id={player.id} />
               </div>
             )
           })}
@@ -93,11 +90,9 @@ class Players extends Component {
         <form>
           <button onClick={(e) => this.updatePlayers(e, this.props.numberOfPlayers)}>Click me</button>
           {this.generatePlayers()}
+          <button onSubmit={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>STATE</button>
         </form>
 
-
-
-        {/* <Category playerInfo={this.state.players} /> */}
       </>
     );
   }
