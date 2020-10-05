@@ -8,6 +8,7 @@ import Footer from './Footer.js'
 import Players from './Players.js';
 import Category from './Category.js';
 import ScoreBoard from './ScoreBoard.js';
+import Timer from './Timer.js'
 
 class App extends Component {
   constructor() {
@@ -62,6 +63,7 @@ class App extends Component {
 
         <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
         <Category playerInfo={this.state.players} />
+        {/* <Timer /> */}
       </div>
     );
   }
