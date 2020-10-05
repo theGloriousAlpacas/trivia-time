@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Category from './Category.js';
 
 class Players extends Component {
   constructor() {
@@ -65,8 +64,7 @@ class Players extends Component {
     this.setState({
       players: stateArray
     })
-
-  }
+  };
 
   nameSubmit = (e) => {
     e.preventDefault()
@@ -89,7 +87,7 @@ class Players extends Component {
     this.setState({
       players: currentState
     })
-  }
+  };
 
   render() {
     return (
