@@ -33,8 +33,8 @@ class App extends Component {
   }
 
   // Event Listener for Play Again button
-    // Resets state to be empty so players can start again
-    // Confirm all key value pairs in state
+  // Resets state to be empty so players can start again
+  // Confirm all key value pairs in state
   handleReset = (event) => {
     event.preventDefault();
     this.setState({
@@ -61,7 +61,7 @@ class App extends Component {
         </form>
 
         <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
-        <Category playerInfo={this.state.players} />
+        <Category playerInfo={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
       </div>
     );
   }
