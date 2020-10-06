@@ -25,7 +25,7 @@ class Category extends Component {
             }
         }).then(response => {
             const res = response.data.results;
-            // console.log(res);
+            console.log('this is the data from the api', res);
             // Use DOMParser to get real string
             //https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
             const parser = new DOMParser();
@@ -37,7 +37,7 @@ class Category extends Component {
                 });
                 const oldString = question.correct_answer
                 const dom = parser.parseFromString(oldString, "text/html")
-                console.log(dom)
+                // console.log(dom)
                 const newString = dom.body.textContent;
                 question.correct_answer = newString
             })
@@ -57,10 +57,24 @@ class Category extends Component {
     }
 
     questionsSubmit = (res, playerInfo) => {
+        // res is the info from the API
+        // playerInfo is the number of players
 
         const questions = res
+        // questions is the info from the API
+        console.log(questions)
 
         const newInfo = playerInfo
+        // new Info = 1 player's info
+            // id:
+            // avatar:
+            // name:
+            // questions: {
+                // 0
+                // 1
+                // 2
+            // }
+            // score:
 
         if (questions.length === 3) {
             newInfo[0].questions = questions
@@ -80,6 +94,26 @@ class Category extends Component {
             newInfo[2].questions = [questions[6], questions[7], questions[8]]
             newInfo[3].questions = [questions[9], questions[10], questions[11]]
         }
+
+        // // SAHIL'S CODE:
+        // for(let i = 0; i < questions.length; i++) {
+
+        //     if (questions.length === 3) {
+
+        //     }
+
+
+        //     let count = 0;
+        //     const arr = [];
+        //     while (count < 3) {
+        //         arr.push(questions[i*3 + count]);
+        //         count++;
+        //     }
+        //     newInfo[0].questions = arr;
+        //     console.log(i);
+        // }
+
+        console.log(newInfo)
 
         this.setState({
             players: newInfo

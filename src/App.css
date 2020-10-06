@@ -74,9 +74,29 @@ span {
   display: inline-block;
 }
 
-/****************************/
-/*  NUMBER OF PLAYERS FORM  */
-/****************************/
+/*********************/
+/*        MAIN       */
+/*********************/
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* PLAYERS FORM - APP.JS */
+
+fieldset {
+  border: none;
+  padding: 20%;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 label {
   font-family: 'Lato', 'sans-serif';
@@ -100,6 +120,24 @@ select {
   background-position: right 0.7em top 60%, 0 0;
   background-size: 1.3rem;
   background-color: #ffffff;
+}
+
+/* PLAYERS.JS */ 
+
+button { /* Why is this button in Players.js when the form is in App.js */
+  font-family: 'Lato', 'sans-serif';
+  color: black;
+  width: 70%;
+  padding: 0.8rem;
+  border: 3px solid #EF23B3;
+  border-radius: 0.5em;
+  background-color: #ffffff;
+}
+
+button:hover,
+button:focus {
+  background-color: #6056f9;
+  color: #ffffff;
 }
 
 ul {
