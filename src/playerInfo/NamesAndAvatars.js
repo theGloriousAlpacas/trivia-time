@@ -70,21 +70,32 @@ class NameAndAvatars extends Component {
         this.setState({isShowingSubmit: false});
     }
 
-    handleFormSubmit = (e) => {
-      e.preventDefault();
-      console.log(e.target.length);
-      for(let i=0; i < e.target.length-1; i++) {
-        const id = e.target[i].id;
-        const name = e.target[i].value;
-        this.setState( state => {
-            let found = state.players.find(player => player.id === id);
-            if(found) {
-                found.name = name;
-            }
-        });
-      }
-      console.log(this.state.players);
-    }
+    // handleFormSubmit = (e) => {
+    //   e.preventDefault();
+    //   console.log(e.target.length);
+    //   for(let i=0; i < e.target.length-1; i++) {
+    //     const id = e.target[i].id;
+    //     const name = e.target[i].value;
+    //     this.setState( state => {
+    //         let found = state.players.find(player => player.id === id);
+    //         if(found) {
+    //             found.name = name;
+    //         }
+    //     });
+    //   }
+    //   console.log(this.state.players);
+    // }
+     handleFormSubmit = (e) => {
+     e.preventDefault();
+     for(let i=0; i<e.target.length-1; i++) {
+        let index = e.target[i].id - 1;
+        let name = e.target[i].value;
+        this.setState((state) => {
+            state.players[index].name = name;
+        });         
+     }
+     console.log(this.state.players);
+   };
 
     generatePlayers = () => {
         if (this.state.isShowingAvatars) {

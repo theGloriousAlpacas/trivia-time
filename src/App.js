@@ -66,7 +66,7 @@ class App extends Component {
         </form> */}
 
         {/* <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
-        <Category playerInfo={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
+        {/* <Category playerInfo={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
       </div>
     );
   }

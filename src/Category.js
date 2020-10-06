@@ -6,6 +6,7 @@ class Category extends Component {
         super();
         this.state = {
             players: [],
+            category: ""
         }
     }
 
@@ -13,6 +14,8 @@ class Category extends Component {
 
         const selectedCategory = e.target.value
         const numberOfQuestions = playerInfo.length * 3
+        // console.log(e.target[1].children);
+        // const categoryName = e.target.text
 
         axios({
             url: 'https://opentdb.com/api.php',
@@ -50,8 +53,7 @@ class Category extends Component {
 
             this.questionsSubmit(res, this.props.playerInfo)
             // this.setState({
-            //     players: playerInfo,
-            //     questions: res,
+            //     category: categoryName
             // })
         })
     }
@@ -60,28 +62,39 @@ class Category extends Component {
 
         const questions = res
 
+
         console.log(questions)
 
         const newInfo = playerInfo
-
-        if (questions.length === 3) {
-            newInfo[0].questions = questions
-
-        } else if (questions.length === 6) {
-            newInfo[0].questions = [questions[0], questions[1], questions[2]]
-            newInfo[1].questions = [questions[3], questions[4], questions[5]]
-
-        } else if (questions.length === 9) {
-            newInfo[0].questions = [questions[0], questions[1], questions[2]]
-            newInfo[1].questions = [questions[3], questions[4], questions[5]]
-            newInfo[2].questions = [questions[6], questions[7], questions[8]]
-
-        } else {
-            newInfo[0].questions = [questions[0], questions[1], questions[2]]
-            newInfo[1].questions = [questions[3], questions[4], questions[5]]
-            newInfo[2].questions = [questions[6], questions[7], questions[8]]
-            newInfo[3].questions = [questions[9], questions[10], questions[11]]
+        for(let i = 0; i < questions.length/3; i++) {
+            let count = 0;
+            const arr = [];
+            while (count < 3) {
+                let x = i*3 + count;
+                arr.push(res[x]);
+                count++;
+            }
+            newInfo[i].questions = arr;
         }
+
+        // if (questions.length === 3) {
+        //     newInfo[0].questions = questions
+
+        // } else if (questions.length === 6) {
+        //     newInfo[0].questions = [questions[0], questions[1], questions[2]]
+        //     newInfo[1].questions = [questions[3], questions[4], questions[5]]
+
+        // } else if (questions.length === 9) {
+        //     newInfo[0].questions = [questions[0], questions[1], questions[2]]
+        //     newInfo[1].questions = [questions[3], questions[4], questions[5]]
+        //     newInfo[2].questions = [questions[6], questions[7], questions[8]]
+
+        // } else {
+        //     newInfo[0].questions = [questions[0], questions[1], questions[2]]
+        //     newInfo[1].questions = [questions[3], questions[4], questions[5]]
+        //     newInfo[2].questions = [questions[6], questions[7], questions[8]]
+        //     newInfo[3].questions = [questions[9], questions[10], questions[11]]
+        // }
 
 
         console.log(newInfo)
