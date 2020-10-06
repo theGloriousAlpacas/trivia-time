@@ -86,6 +86,38 @@ class Category extends Component {
         })
     };
 
+
+    // onAnswerClicked = (question, answer) => {
+    //     console.log(question, answer);
+    //     console.log(answer === question.correct_answer)
+    //     this.setState({
+    //         currentQuestion: this.state.currentQuestion + 1
+    //     })
+    // }
+
+    // showQuestions = () => {
+    //     if (this.state.questions.length === 0) {
+    //         console.log("No questions yet")
+    //         return <></>
+    //     } else {
+    //         // console.log(this.state.questions)
+    //         const question = this.state.questions[this.state.currentQuestion]
+    //         // console.log(question)
+    //         const allAnswers = [...question.incorrect_answers, question.correct_answer]
+    //         // randomize allAnswers?
+    //         return <div>
+    //             <h2>{question.question}</h2>
+    //             {allAnswers.map((answer) => {
+    //                 // console.log(this);
+    //                 return <button onClick={() => this.onAnswerClicked(question, answer)}>
+    //                     {answer}
+    //                 </button>
+    //             })}
+    //         </div>
+    //             ;
+    //     }
+    // }
+
     render() {
         return (
             <div>
