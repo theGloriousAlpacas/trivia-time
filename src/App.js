@@ -9,14 +9,13 @@ import Category from './Category.js';
 import ScoreBoard from './ScoreBoard.js';
 import Timer from './Timer.js'
 import PlayerInformation from './playerInfo/PlayerInformation.js';
-import Playgame from './Playgame';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       questions: {},
-      numPlayers: ''
+      players: ''
     }
   }
 
@@ -41,8 +40,7 @@ class App extends Component {
     event.preventDefault();
     this.setState({
       questions: {},
-      numPlayers: '',
-      players: {}
+      players: ''
     })
   }
 
@@ -67,10 +65,8 @@ class App extends Component {
           </fieldset>
         </form> */}
 
-
         {/* <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
-        <Category playerInfo={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
-        <Playgame players={this.state.players}/>
+        {/* <Category playerInfo={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
       </div>
     );
   }

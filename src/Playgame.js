@@ -41,6 +41,7 @@ class Playgame extends Component {
     }
 
     showQuestions = () => {
+        console.log(this.props.players)
         if (!this.props.players || !this.props.players[0].questions) {
             console.log("Pick your categories")
             return <></>
@@ -57,7 +58,8 @@ class Playgame extends Component {
             const allAnswers = [...question.incorrect_answers, question.correct_answer]
             this.shuffleArray(allAnswers)
             return <div>
-                <h2>{question.question}</h2>
+                <p>Player {player.name}</p>
+                <h2>{`Question ${this.state.currentQuestion + 1} : ${question.question}`}</h2>
                 {allAnswers.map((answer) => {
                     // console.log(this);
                     return <button onClick={() => this.onAnswerClicked(question, answer)}>
