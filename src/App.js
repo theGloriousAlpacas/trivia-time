@@ -5,10 +5,10 @@ import axios from "axios";
 
 import Header from './Header.js'
 import Footer from './Footer.js'
-import Players from './Players.js';
 import Category from './Category.js';
 import ScoreBoard from './ScoreBoard.js';
 import Timer from './Timer.js'
+import PlayerInformation from './playerInfo/PlayerInformation.js';
 
 class App extends Component {
   constructor() {
@@ -19,12 +19,12 @@ class App extends Component {
     }
   }
 
-  handleChange = (event) => {
-    console.log(event);
-    this.setState({
-      players: event.target.value,
-    })
-  }
+  // handleChange = (event) => {
+  //   console.log(event);
+  //   this.setState({
+  //     players: event.target.value,
+  //   })
+  // }
 
   updatedPlayersInformation = (e, players) => {
     e.preventDefault();
@@ -48,7 +48,11 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <form>
+
+        <Router>
+          <Route path="/" component={PlayerInformation} />
+        </Router>
+        {/* <form>
           <fieldset>
             <label htmlFor="">Number of players: </label>
             <select onChange={this.handleChange}>
@@ -59,9 +63,9 @@ class App extends Component {
               <option value="4">4</option>
             </select>
           </fieldset>
-        </form>
+        </form> */}
 
-        <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
+        {/* <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
         <Category playerInfo={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
       </div>
     );

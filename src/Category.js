@@ -25,7 +25,7 @@ class Category extends Component {
             }
         }).then(response => {
             const res = response.data.results;
-            // console.log(res);
+            console.log('this is the data from the api', res);
             // Use DOMParser to get real string
             //https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
             const parser = new DOMParser();
@@ -37,7 +37,7 @@ class Category extends Component {
                 });
                 const oldString = question.correct_answer
                 const dom = parser.parseFromString(oldString, "text/html")
-                console.log(dom)
+                // console.log(dom)
                 const newString = dom.body.textContent;
                 question.correct_answer = newString
             })
@@ -60,6 +60,8 @@ class Category extends Component {
 
         const questions = res
 
+        console.log(questions)
+
         const newInfo = playerInfo
 
         if (questions.length === 3) {
@@ -81,12 +83,15 @@ class Category extends Component {
             newInfo[3].questions = [questions[9], questions[10], questions[11]]
         }
 
+
+        console.log(newInfo)
+
         this.setState({
             players: newInfo
         })
     };
 
-
+    // THIS DOES IN PLAYGAME.JS - SHITAL HAS DONE THIS
     // onAnswerClicked = (question, answer) => {
     //     console.log(question, answer);
     //     console.log(answer === question.correct_answer)
