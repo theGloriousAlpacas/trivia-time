@@ -7,9 +7,11 @@ const Header = () => {
     return(
         <header>
             <div className="wrapper">
-                <img src={logo} alt="Trivia Time logo"/>
-                <h1>Trivia Time</h1>
-                <p>Fight your friends in a battle of wits!</p>
+                <div className="headerContainer">
+                    <img src={logo} className="logo" alt="Trivia Time logo"/>
+                    <h1>Trivia Time</h1>
+                    <p>Fight your friends in a battle of wits!</p>
+                </div>
             </div>
         </header>
     )
