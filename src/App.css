@@ -34,7 +34,7 @@ img {
 
 .App {
   background-color: #e3f4f3;
-  background-image: url(./background-2.png);
+  background-image: url(./background-2-opacity.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -51,13 +51,12 @@ p {
 
 .headerContainer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .logo {
-  max-width: 25%;
+  max-width: 20%;
 }
 
 h1 {
