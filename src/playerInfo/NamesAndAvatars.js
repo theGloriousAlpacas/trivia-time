@@ -101,10 +101,10 @@ class NameAndAvatars extends Component {
         if (this.state.isShowingAvatars) {
             const players = this.state.players;
             return ( 
-                <div>
+                <div className="playerSetupContainer">
                     {players.map((player) => {
                         return (
-                            <div key={player.id}>
+                            <div key={player.id} className="playerInfoInput">
                                 <img src={player.img} alt="" />
                                 <input onChange={this.handleChange} id={player.id}/>
                             </div>
@@ -120,11 +120,11 @@ class NameAndAvatars extends Component {
     render() {
         return (
           <div>
-            <form onSubmit={this.handleFormSubmit}>
+            <form onSubmit={this.handleFormSubmit} className="numberOfPlayersSubmit">
               {this.generatePlayers()}
               {!this.state.isShowingAvatars 
-                    ? (<button type="button" onClick={(e) => this.updateState(e, this.props.numberOfPlayers)}>Click me</button>) 
-                    : (<button type="submit" onClick={(e) => this.props.playerInformation(this.state.players)}>Submit</button>)
+                    ? (<button type="button" className="playersButton" onClick={(e) => this.updateState(e, this.props.numberOfPlayers)}>Go!</button>) 
+                    : (<button type="submit" className="playersButton" onClick={(e) => this.props.playerInformation(this.state.players)}>Submit</button>)
               }
             </form>
           </div>

@@ -162,12 +162,12 @@ class Category extends Component {
 
     render() {
         return (
-            <div>
-                <form onChange={(e) => {
+            <div className="categoryContainer">
+                <form className="categoryForm" onChange={(e) => {
                     this.generateQuestions(e, this.props.playerInfo)
                 }}>
-                    <fieldset>
-                        <label htmlFor="">Select Category: </label>
+                    <fieldset className="categoryFieldset">
+                        <label className="categoryLabel" htmlFor="">Select Category: </label>
                         <select>
                             <option disabled selected className="default">Select a Category</option>
                             <option value="9">General Knowledge</option>
@@ -177,7 +177,7 @@ class Category extends Component {
                             <option value="17">Science And Nature</option>
                         </select>
                     </fieldset>
-                    <button onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>Continue</button>
+                    <button className="categoryButton" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>Continue</button>
                 </form>
             </div>
         )

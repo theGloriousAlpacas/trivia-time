@@ -33,12 +33,10 @@ img {
 }
 
 .App {
-  background-color: #e3f4f3;
   background-image: url(./background-2-1.png);
   background-repeat: no-repeat;
-  background-position: center center;
+  /* background-position: center center; */
   background-size: cover;
-  height: 150vh;
 }
 
 p {
@@ -59,7 +57,7 @@ p {
 }
 
 .logo {
-  max-width: 20%;
+  max-width: 15%;
 }
 
 h1 {
@@ -74,9 +72,9 @@ span {
   display: inline-block;
 }
 
-/*********************/
-/*        MAIN       */
-/*********************/
+/************************/
+/*  NUMBEROFPLAYERS.JS  */
+/************************/
 
 main {
   display: flex;
@@ -85,11 +83,9 @@ main {
   align-items: center;
 }
 
-/* PLAYERS FORM - APP.JS */
-
-fieldset {
+.playerForm {
   border: none;
-  padding: 20%;
+  /* padding: 20%; */
   background-color: white;
   border-radius: 20px;
   display: flex;
@@ -101,6 +97,10 @@ fieldset {
 label {
   font-family: 'Lato', 'sans-serif';
   font-size: 1.5rem;
+}
+
+.playerLabel {
+  margin-bottom: 10%;
 }
 
 select {
@@ -122,12 +122,34 @@ select {
   background-color: #ffffff;
 }
 
-/* PLAYERS.JS */ 
+/************************/
+/*  NAMESANDAVATARS.JS  */
+/************************/
 
-button { /* Why is this button in Players.js when the form is in App.js */
+/* Submit button for Number of Players */
+
+/* Parent div housing all divs that house avatar & input field */
+.playerSetupContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form housing Go! and Submit button */
+.numberOfPlayersSubmit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Submit Button */
+
+button { 
   font-family: 'Lato', 'sans-serif';
   color: black;
-  width: 70%;
+  margin: 2% 0;
   padding: 0.8rem;
   border: 3px solid #EF23B3;
   border-radius: 0.5em;
@@ -140,9 +162,76 @@ button:focus {
   color: #ffffff;
 }
 
+.playersButton {
+  width: 20%;
+}
+
+/* Avatar & Inputs */
+
+/* Div with avatar & input field */
+.playerInfoInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3%;
+  padding: 3%;
+  background: #ffffff;
+  border-radius: 1em;
+}
+
+.playerInfoInput img {
+  width: 100%;
+}
+
+.playerInfoInput input {
+  border: 2px solid #EF23B3;
+  border-radius: 0.5em;
+  background-color: #ffffff;
+  padding: 0.8rem;
+}
+
 ul {
   list-style: none;
 }
+
+/************************/
+/*     CATEGORY.JS      */
+/************************/
+
+/* Parent div holding form */
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.categoryForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categoryFieldset {
+  border: none;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.categoryLabel {
+  margin-bottom: 2%;
+}
+
+.categoryButton {
+  width: 70%;
+}
+
+
 
 .results {
   display: flex;
