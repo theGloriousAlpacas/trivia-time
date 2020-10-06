@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Timer from './Timer'
 
 // Started the current game at current Player at 0 which is the first player.
 // The current question for the player is 0 too.
@@ -78,6 +79,7 @@ class Playgame extends Component {
 
                 {this.props.title}
                 <h1>PLAYYYYY</h1>
+                <Timer />
             </div>
 
         )
