@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import Header from './Header.js'
@@ -9,13 +9,15 @@ import Category from './Category.js';
 import ScoreBoard from './ScoreBoard.js';
 import Timer from './Timer.js'
 import PlayerInformation from './playerInfo/PlayerInformation.js';
+import Playgame from './Playgame.js'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       questions: {},
-      players: ''
+      players: [],
+      goToPlay: false
     }
   }
 
@@ -40,19 +42,34 @@ class App extends Component {
     event.preventDefault();
     this.setState({
       questions: {},
-      players: ''
+      players: []
+    })
+  }
+
+  getCategory = (e, players) => {
+    e.preventDefault();
+    this.setState({
+      players: players,
+      goToPlay: true
     })
   }
 
   render() {
     return (
-      <div className="App">
-        <Header />
+      <Router>
+        <div className="App">
 
-        <Router>
-          <Route path="/" component={PlayerInformation} />
-        </Router>
-        {/* <form>
+          <Header />
+          {this.state.goToPlay ? <Redirect to="/play" /> : null}
+
+          <Route exact path="/">
+            <PlayerInformation
+              getCategory={this.getCategory} />
+          </Route>
+
+          <Route path="/play" render={(props) => <Playgame players={this.state.players} title={`Props through render`} />} />
+
+          {/* <form>
           <fieldset>
             <label htmlFor="">Number of players: </label>
             <select onChange={this.handleChange}>
@@ -65,9 +82,10 @@ class App extends Component {
           </fieldset>
         </form> */}
 
-        {/* <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
-        {/* <Category playerInfo={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
-      </div>
+          {/* <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
+          {/* <Category playerInfo={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
+        </div>
+      </Router>
     );
   }
 }

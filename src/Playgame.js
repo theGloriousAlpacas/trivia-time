@@ -72,7 +72,17 @@ class Playgame extends Component {
     }
 
     render() {
-        return this.showQuestions();
+        // return this.showQuestions();
+        return (
+            <div>
+
+                {this.props.title}
+                <h1>PLAYYYYY</h1>
+            </div>
+
+        )
+
+
     }
 
 }
