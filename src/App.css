@@ -34,7 +34,15 @@ img {
 
 .App {
   background-color: #e3f4f3;
+  background-image: url(./background-2.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   height: 150vh;
+}
+
+p {
+  font-family: 'Lato', 'sans-serif';
 }
 
 /*********************/
@@ -43,11 +51,24 @@ img {
 
 .headerContainer {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
-  max-width: 20%;
+  max-width: 25%;
 }
+
+h1 {
+  font-family: 'Josefin Sans', 'sans-serif';
+  font-size: 3rem;
+}
+
+/****************************/
+/*  NUMBER OF PLAYERS FORM  */
+/****************************/
+
 
 ul {
   list-style: none;
