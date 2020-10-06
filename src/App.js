@@ -8,6 +8,7 @@ import Footer from './Footer.js'
 import Players from './Players.js';
 import Category from './Category.js';
 import ScoreBoard from './ScoreBoard.js';
+import Timer from './Timer.js'
 
 class App extends Component {
   constructor() {
@@ -33,8 +34,8 @@ class App extends Component {
   }
 
   // Event Listener for Play Again button
-    // Resets state to be empty so players can start again
-    // Confirm all key value pairs in state
+  // Resets state to be empty so players can start again
+  // Confirm all key value pairs in state
   handleReset = (event) => {
     event.preventDefault();
     this.setState({
@@ -61,8 +62,8 @@ class App extends Component {
         </form>
 
         <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
-        <Category playerInfo={this.state.players} />
-        <Footer />
+        <Category playerInfo={this.state.players} getPlayerInformation={this.updatedPlayersInformation} />
+        <Timer />
       </div>
     );
   }

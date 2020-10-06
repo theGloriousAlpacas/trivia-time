@@ -6,8 +6,6 @@ class Category extends Component {
         super();
         this.state = {
             players: [],
-            questions: [],
-            currentQuestion: 0
         }
     }
 
@@ -31,7 +29,7 @@ class Category extends Component {
             // Use DOMParser to get real string
             //https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
             const parser = new DOMParser();
-            res.map( (question) => {
+            res.map((question) => {
                 question.incorrect_answers.forEach((incorrectAnswer, index) => {
                     const dom = parser.parseFromString(incorrectAnswer, "text/html")
                     const newString = dom.body.textContent;
@@ -43,55 +41,89 @@ class Category extends Component {
                 const newString = dom.body.textContent;
                 question.correct_answer = newString
             })
-            res.map( (question) => {
+            res.map((question) => {
                 const oldString = question.question;
                 const dom = parser.parseFromString(oldString, "text/html")
                 const newString = dom.body.textContent;
                 question.question = newString
             })
-            this.setState({
-                players: playerInfo,
-                questions: res,
-            })
+
+            this.questionsSubmit(res, this.props.playerInfo)
+            // this.setState({
+            //     players: playerInfo,
+            //     questions: res,
+            // })
         })
     }
 
-    onAnswerClicked = (question, answer) => {
-        console.log(question, answer);
-        console.log(answer === question.correct_answer)
-        this.setState({
-            currentQuestion: this.state.currentQuestion + 1
-        })
-    }
+    questionsSubmit = (res, playerInfo) => {
 
-    showQuestions = () => {
+        const questions = res
 
-        if (this.state.questions.length === 0) {
-            console.log("No questions yet")
-            return <></>
+        const newInfo = playerInfo
+
+        if (questions.length === 3) {
+            newInfo[0].questions = questions
+
+        } else if (questions.length === 6) {
+            newInfo[0].questions = [questions[0], questions[1], questions[2]]
+            newInfo[1].questions = [questions[3], questions[4], questions[5]]
+
+        } else if (questions.length === 9) {
+            newInfo[0].questions = [questions[0], questions[1], questions[2]]
+            newInfo[1].questions = [questions[3], questions[4], questions[5]]
+            newInfo[2].questions = [questions[6], questions[7], questions[8]]
+
         } else {
-            // console.log(this.state.questions)
-            const question = this.state.questions[this.state.currentQuestion]
-            // console.log(question)
-            const allAnswers = [...question.incorrect_answers, question.correct_answer]
-            // randomize allAnswers?
-            return <div>
-                    <h2>{question.question}</h2>
-                        {allAnswers.map((answer) => {
-                            // console.log(this);
-                            return <button onClick={() => this.onAnswerClicked(question, answer)}>
-                                {answer}
-                            </button>
-                        })}
-                </div>
-            ;
+            newInfo[0].questions = [questions[0], questions[1], questions[2]]
+            newInfo[1].questions = [questions[3], questions[4], questions[5]]
+            newInfo[2].questions = [questions[6], questions[7], questions[8]]
+            newInfo[3].questions = [questions[9], questions[10], questions[11]]
         }
-    }
+
+        this.setState({
+            players: newInfo
+        })
+    };
+
+
+    // onAnswerClicked = (question, answer) => {
+    //     console.log(question, answer);
+    //     console.log(answer === question.correct_answer)
+    //     this.setState({
+    //         currentQuestion: this.state.currentQuestion + 1
+    //     })
+    // }
+
+    // showQuestions = () => {
+    //     if (this.state.questions.length === 0) {
+    //         console.log("No questions yet")
+    //         return <></>
+    //     } else {
+    //         // console.log(this.state.questions)
+    //         const question = this.state.questions[this.state.currentQuestion]
+    //         // console.log(question)
+    //         const allAnswers = [...question.incorrect_answers, question.correct_answer]
+    //         // randomize allAnswers?
+    //         return <div>
+    //             <h2>{question.question}</h2>
+    //             {allAnswers.map((answer) => {
+    //                 // console.log(this);
+    //                 return <button onClick={() => this.onAnswerClicked(question, answer)}>
+    //                     {answer}
+    //                 </button>
+    //             })}
+    //         </div>
+    //             ;
+    //     }
+    // }
 
     render() {
         return (
             <div>
-                <form onChange={(e) => { this.generateQuestions(e, this.props.playerInfo) }}>
+                <form onChange={(e) => {
+                    this.generateQuestions(e, this.props.playerInfo)
+                }}>
                     <fieldset>
                         <label htmlFor="">Select Category: </label>
                         <select>
@@ -103,10 +135,8 @@ class Category extends Component {
                             <option value="17">Science And Nature</option>
                         </select>
                     </fieldset>
+                    <button onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>Continue</button>
                 </form>
-                <div>
-                    {this.showQuestions()}
-                </div>
             </div>
         )
     }
