@@ -1,48 +1,56 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class ScoreBoard extends Component {
-    constructor(){
-        super();
-        // CONFIRM DATA STRUCTURE IN STATE
-        this.state = {
-            players: [
-                {
-                    id: 0,
-                    name: 'Anjelica',
-                    avatar: 'https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=blue',
-                    score: 1
-                },
-                {
-                    id: 1,
-                    name: 'Sahil',
-                    avatar: 'https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=red',
-                    score: 2
-                },
-                {
-                    id: 2,
-                    name: 'Danilo',
-                    avatar: 'https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=yellow',
-                    score: 3
-                },
-                {
-                    id: 3,
-                    name: 'Adam',
-                    avatar: 'https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=purple',
-                    score: 2
-                },
-                {
-                    id: 4,
-                    name: 'Shital',
-                    avatar: 'https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=orange',
-                    score: 2
-                },
-            ]
-        }
-    }
 
 
+    // constructor(){
+    //     super();
+    //     // CONFIRM DATA STRUCTURE IN STATE
+    //     this.state = {
+    //         players: [
+    //             {
+    //                 id: 0,
+    //                 name: 'Anjelica',
+    //                 avatar: 'https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=blue',
+    //                 score: 1
+    //             },
+    //             {
+    //                 id: 1,
+    //                 name: 'Sahil',
+    //                 avatar: 'https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=red',
+    //                 score: 2
+    //             },
+    //             {
+    //                 id: 2,
+    //                 name: 'Danilo',
+    //                 avatar: 'https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=yellow',
+    //                 score: 3
+    //             },
+    //             {
+    //                 id: 3,
+    //                 name: 'Adam',
+    //                 avatar: 'https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=purple',
+    //                 score: 2
+    //             },
+    //             {
+    //                 id: 4,
+    //                 name: 'Shital',
+    //                 avatar: 'https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=orange',
+    //                 score: 2
+    //             },
+    //         ]
+    //     }
+    // }
+
+
+    // this.props.playerNumber = this.state.players in App.js
+    
+    
     render() {
-        
+        const playerNumber = this.props.playerNumber
+        console.log(playerNumber)
+
         return (
     
             <div className="scoreBoard">
@@ -50,9 +58,8 @@ class ScoreBoard extends Component {
     
                 <div className="scoreList">
                     <ul>
-                        {/* Number of li's generated = number of players in the game. This info is in state - need to confirm structure*/}
-
-                        {this.state.players.map((player) => {
+                        
+                        {this.props.playerNumber.map((player) => {
 
                             // Variables for specific pieces of info
                             const name = player.name;
@@ -71,7 +78,9 @@ class ScoreBoard extends Component {
                 </div>
     
                 {/* Play Again button - sets state to original state (empty) */}
-                <button onClick={this.props.handleReset}>Play again</button>
+                <button onClick={this.props.handleReset}><Link to="/">Play Again?</Link></button>
+
+                {/* <button onClick={this.props.handleReset}>Play again</button> */}
             </div>
         )
     }

@@ -67,7 +67,9 @@ class App extends Component {
               getCategory={this.getCategory} />
           </Route>
 
-          <Route path="/play" render={(props) => <Playgame players={this.state.players} title={`Props through render`} />} />
+          <Route path="/play" render={(props) => <Playgame players={this.state.players} title={`Props through render`} reset={this.handleReset}/>} />
+
+          {/* <Route path="/scoreboard" render={(props) => <ScoreBoard title={'Final Scores'} />} /> */}
 
           {/* <form>
           <fieldset>

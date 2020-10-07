@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ScoreBoard from './ScoreBoard';
 import Timer from './Timer';
 
 // Started the current game at current Player at 0 which is the first player.
@@ -65,7 +66,7 @@ class Playgame extends Component {
             // If there is no player number, display "no player"
                 // This is at the end of the game when there are no more players to play - this where we'll route to the scoreboard
             if (!player) {
-                return <div>No player</div> 
+                return <ScoreBoard playerNumber={this.props.players} handleReset={this.props.reset}/>
             }
 
             // question = the player's current question
