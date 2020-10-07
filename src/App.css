@@ -98,3 +98,7 @@ footer a:focus {
 .parentHide {
   display: none;
 }
+
+.questionDivHide {
+  display: none;
+}

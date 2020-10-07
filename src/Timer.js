@@ -4,13 +4,13 @@ class Timer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            timer: 30,
+            timer: 5,
             start: true
         }
     }
     // Create a timer that counts down from 30 seconds - needs to be tied to the Category Component so once category is picked, timer starts
-    componentDidMount(){
-        let myInterval = setInterval( () => {
+    componentDidMount() {
+        let myInterval = setInterval(() => {
             this.setState({
                 timer: this.state.timer - 1
             })
@@ -29,6 +29,8 @@ class Timer extends Component {
                 timer: 30,
                 start: false
             })
+            this.props.stopTime();
+
             clearInterval(this.state.myInterval);
             //Then go to the next question
             // this.props.stopTime();

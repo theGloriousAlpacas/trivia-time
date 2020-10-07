@@ -29,27 +29,30 @@ class Playgame extends Component {
         const div2 = document.querySelector(".answer2")
         const div3 = document.querySelector(".answer3")
 
-        let divArray = [div1, div2, div3]
+        const divArray = [div1, div2, div3]
         console.log(divArray)
 
-        divArray.forEach( (div) => {
+        divArray.forEach((div) => {
             div.classList.toggle("parentHide")
         })
+
+        const questionDiv = document.querySelector('.questionDiv')
+        questionDiv.classList.toggle('questionDivHide')
     }
 
     onAnswerClicked = (e, question, answer, questionNumber) => {
         const parentDiv = e.target.parentNode
-    
-        if(!this.state.answeredQuestionTracker[questionNumber]) {
+
+        if (!this.state.answeredQuestionTracker[questionNumber]) {
             let player = this.props.players[this.state.currentPlayer];
             if (answer === question.correct_answer) {
                 player.score++;
                 let answeredQuestionTracker = this.state.answeredQuestionTracker;
-                answeredQuestionTracker[questionNumber]= true;
+                answeredQuestionTracker[questionNumber] = true;
                 this.setState({
                     answeredQuestionTracker: answeredQuestionTracker,
 
-                });                
+                });
             }
         }
 
@@ -63,46 +66,55 @@ class Playgame extends Component {
     //     })
     //   }
 
+    timerFunction = () => {
+        const questionDiv = document.querySelector('.questionDiv')
+        questionDiv.classList.toggle("questionDivHide")
+    }
 
+    showQuestions = () => {
+        console.log("players:", this.props.players);
+        if (!this.props.players || !this.props.players[0].questions) {
+            console.log("Pick your categories");
+            return <></>;
+        } else if (this.state.cleanTheScreen) {
+            this.setState({
+                cleanTheScreen: false
+            });
+            return <></>;
+        } else {
 
-  showQuestions = () => {
-    console.log("players:", this.props.players);
-    if (!this.props.players || !this.props.players[0].questions) {
-      console.log("Pick your categories");
-      return <></>;
-    } else if(this.state.cleanTheScreen) {
-        this.setState({
-            cleanTheScreen: false
-        });
-        return <></>;
-    } else {
-      const player = this.props.players[this.state.currentPlayer];
-      if (!player) {
-        return <div>No player</div>;
-      }
-      return <div>
-                <p>Player {player.name}</p>
-                <Timer />
-                {player.questions.map((question, index) => {           
-                    return (<div>
+            const player = this.props.players[this.state.currentPlayer];
+            if (!player) {
+                return <div>No player</div>;
+            }
+            return (
+                <>
+                    <div className="questionDiv">
+                        <p>Player {player.name}</p>
+                        <Timer stopTime={this.timerFunction} />
+                        {player.questions.map((question, index) => {
+                            return (<div>
                                 <h2>{`Question ${index + 1} : ${question.question}`}</h2>
                                 <div className={`answer${index + 1}`}>
-                                {question.allAnswers.map((answer) => {
+                                    {question.allAnswers.map((answer) => {
                                         return (
                                             <button onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
-                                            {answer}</button>
-                                            )
-                                        })}
-                                </div>    
+                                                {answer}</button>
+                                        )
+                                    })}
+                                </div>
                             </div>)
-                })}
-                <button onClick={this.handleNextPlayer} >Next Player</button>
-            </div>
+                        })}
+
+                    </div>
+                    <button onClick={this.handleNextPlayer} >Next Player</button>
+                </>
+            )
+        }
+    };
+    render() {
+        return this.showQuestions();
     }
-  };
-  render() {
-    return this.showQuestions();
-  }
 }
 export default Playgame;
 
