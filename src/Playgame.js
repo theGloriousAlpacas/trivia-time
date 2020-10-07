@@ -23,9 +23,22 @@ class Playgame extends Component {
             currentPlayer: this.state.currentPlayer + 1,
             answeredQuestionTracker: [false, false, false],
         })
+
+        const div1 = document.querySelector(".answer1")
+        const div2 = document.querySelector(".answer2")
+        const div3 = document.querySelector(".answer3")
+
+        let divArray = [div1, div2, div3]
+        console.log(divArray)
+
+        divArray.forEach( (div) => {
+            div.classList.toggle("parentHide")
+        })
     }
 
-    onAnswerClicked = (question, answer, questionNumber) => {
+    onAnswerClicked = (e, question, answer, questionNumber) => {
+        const parentDiv = e.target.parentNode
+    
         if(!this.state.answeredQuestionTracker[questionNumber]) {
             let player = this.props.players[this.state.currentPlayer];
             if (answer === question.correct_answer) {
@@ -34,10 +47,12 @@ class Playgame extends Component {
                 answeredQuestionTracker[questionNumber]= true;
                 this.setState({
                     answeredQuestionTracker: answeredQuestionTracker,
-                    // score: this.state.players[this.state.currentPlayer].score++
+
                 });                
             }
         }
+
+        parentDiv.classList.toggle("parentHide")
     }
 
     // updatedPlayersInformation = (e, players) => {
@@ -46,6 +61,8 @@ class Playgame extends Component {
     //       players: players
     //     })
     //   }
+
+
 
   showQuestions = () => {
     console.log("players:", this.props.players);
@@ -65,13 +82,17 @@ class Playgame extends Component {
       return <div>
                 <p>Player {player.name}</p>
                 {player.questions.map((question, index) => {           
-                    return <div>
+                    return (<div>
                                 <h2>{`Question ${index + 1} : ${question.question}`}</h2>
+                                <div className={`answer${index + 1}`}>
                                 {question.allAnswers.map((answer) => {
-                                    return <button onClick={() => this.onAnswerClicked(question, answer, index)}>
-                                        {answer}
-                                    </button>})}
-                            </div>
+                                        return (
+                                            <button onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
+                                            {answer}</button>
+                                            )
+                                        })}
+                                </div>    
+                            </div>)
                 })}
                 <button onClick={this.handleNextPlayer} >Next Player</button>
             </div>
