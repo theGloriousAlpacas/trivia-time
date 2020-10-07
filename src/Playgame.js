@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Timer from './Timer.js';
 // Started the current game at current Player at 0 which is the first player.
 // The current question for the player is 0 too.
 class Playgame extends Component {
@@ -81,6 +82,7 @@ class Playgame extends Component {
       }
       return <div>
                 <p>Player {player.name}</p>
+                <Timer />
                 {player.questions.map((question, index) => {           
                     return (<div>
                                 <h2>{`Question ${index + 1} : ${question.question}`}</h2>
