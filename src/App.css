@@ -231,44 +231,81 @@ ul {
   width: 70%;
 }
 
+/*********************/
+/*     TIMER.JS      */
+/*********************/
 
+.timer {
+  font-family: 'Josefin Sans', 'sans-serif';
+  font-size: 4rem;
+  display: inline-block;
+  padding: 2%;
+}
+
+.timerOk {
+  color: green;
+}
+
+.timerWrapUp {
+  color: rgb(235, 114, 8);
+}
+
+.timerDanger {
+  color: red;
+}
+
+/*********************/
+/*   SCOREBOARD.JS   */
+/*********************/
 
 .results {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.results h3 {
+.scoreBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 8%;
+  border: 2px solid #EF23B3;
+  border-radius: 0.5em;
+}
+
+li:first-child {
+  color: #6056f9;
+}
+
+h2, h3 {
+  font-family: 'Josefin Sans', 'sans-serif';
+}
+
+h2 {
+  margin-bottom: 8%;
+  font-size: 4rem;
+}
+
+.playerScores {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20%;
+}
+
+.playerScores h3 {
   font-size: 2rem;
-  padding: 0 3%;
+  padding: 0 20% 0 0;
 }
 
-.results p {
+.playerScores p {
   font-size: 2rem;
 }
-
 
 /*********************/
-/*      HEADER       */
+/*     FOOTER.JS     */
 /*********************/
-
-.timerOk {
-  display: inline-block;
-  padding: 2%;
-  background-color: green;
-}
-
-.timerWrapUp {
-  display: inline-block;
-  padding: 2%;
-  background-color: yellow;
-}
-
-.timerDanger {
-  display: inline-block;
-  padding: 2%;
-  background-color: red;
-}
 
 footer {
   color: white;

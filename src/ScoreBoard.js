@@ -44,35 +44,38 @@ class ScoreBoard extends Component {
     render() {
         
         return (
+
+            <section className="results">
+                <div className="scoreBoard">
+                    <h2>Results</h2>
+        
+                    <div className="scoreList">
+                        <ul>
+                            {/* Number of li's generated = number of players in the game. This info is in state - need to confirm structure*/}
+
+                            {this.state.players.map((player) => {
+
+                                // Variables for specific pieces of info
+                                const name = player.name;
+                                const score = player.score;
+
+                                return (
+                                    <li>
+                                        <div className="playerScores">
+                                            <h3>{name}</h3>
+                                            <p>{score}</p>
+                                        </div>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </div>
     
-            <div className="scoreBoard">
-                <h2>Results</h2>
     
-                <div className="scoreList">
-                    <ul>
-                        {/* Number of li's generated = number of players in the game. This info is in state - need to confirm structure*/}
-
-                        {this.state.players.map((player) => {
-
-                            // Variables for specific pieces of info
-                            const name = player.name;
-                            const score = player.score;
-
-                            return (
-                                <li>
-                                    <div className="results">
-                                        <h3>{name}</h3>
-                                        <p>{score}</p>
-                                    </div>
-                                </li>
-                            )
-                        })}
-                    </ul>
+                    {/* Play Again button - sets state to original state (empty) */}
+                    <button onClick={this.props.handleReset}>Play again</button>
                 </div>
-    
-                {/* Play Again button - sets state to original state (empty) */}
-                <button onClick={this.props.handleReset}>Play again</button>
-            </div>
+            </section>
         )
     }
     

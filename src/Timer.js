@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ScoreBoard from "./ScoreBoard";
 
 
     // Stretch goal - change color/appearance when at 10 seconds and then at 5 seconds to visually show you're running out of time
@@ -40,17 +41,18 @@ class Timer extends Component {
         // Setting styles for timer
         let timer = () => {   
             if (this.state.timer >= 15) {
-                return <p className="timerOk">{this.state.timer}</p>
+                return <p className="timer timerOk">{this.state.timer}</p>
             } else if (this.state.timer >= 10) {
-                return <p className="timerWrapUp">{this.state.timer}</p>
+                return <p className=" timer timerWrapUp">{this.state.timer}</p>
             } else {
-                return <p className="timerDanger">{this.state.timer}</p>
+                return <p className="timer timerDanger">{this.state.timer}</p>
             }
         }
 
         return (
             <>
                 <p>{timer()}</p>
+                <ScoreBoard />
             </>
         )
     }
