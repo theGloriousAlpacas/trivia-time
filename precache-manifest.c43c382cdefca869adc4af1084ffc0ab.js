@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d9b7b94e32acbe217ce46923118d5b85",
+    "revision": "e0daba40950e496cdf686515320913b3",
     "url": "/trivia-time/index.html"
   },
   {
-    "revision": "d273ba5ddd45b86c650f",
+    "revision": "32571ca48c0e104dd9d4",
     "url": "/trivia-time/static/css/main.2bed5f87.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/trivia-time/static/js/2.8036cd36.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d273ba5ddd45b86c650f",
-    "url": "/trivia-time/static/js/main.b0041289.chunk.js"
+    "revision": "32571ca48c0e104dd9d4",
+    "url": "/trivia-time/static/js/main.169eba56.chunk.js"
   },
   {
     "revision": "57410d5c0e475350cf98",
