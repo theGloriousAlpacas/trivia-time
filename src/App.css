@@ -33,9 +33,9 @@ img {
 }
 
 .App {
-  background-image: url(./background-2-1.png);
-  background-repeat: no-repeat;
-  /* background-position: center center; */
+  background-image: url(./trivia-time-bg-01.png);
+  background-repeat: repeat;
+  background-position: center;
   background-size: cover;
 }
 
@@ -47,11 +47,15 @@ p {
 /*      HEADER       */
 /*********************/
 
+header {
+  background-color: #6197e8;
+}
+
 .headerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3%;
+  padding: 5%;
   /* background-color: white;
   border-radius: 20px; */
 }
@@ -64,6 +68,7 @@ h1 {
   font-family: 'Josefin Sans', 'sans-serif';
   font-size: 3rem;
   display: flex;
+  align-items: center;
   flex-direction: column;
   margin-left: 2%;
 }
@@ -85,8 +90,9 @@ main {
 
 .playerForm {
   border: none;
-  /* padding: 20%; */
+  padding: 8%;
   background-color: white;
+  width: 40vw;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -100,7 +106,7 @@ label {
 }
 
 .playerLabel {
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 
 select {
@@ -175,7 +181,7 @@ button:focus {
   justify-content: center;
   align-items: center;
   margin: 3%;
-  padding: 3%;
+  padding: 5%;
   background: #ffffff;
   border-radius: 1em;
 }
@@ -216,6 +222,8 @@ ul {
 .categoryFieldset {
   border: none;
   background-color: white;
+  width: 40vw;
+  padding: 8%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
