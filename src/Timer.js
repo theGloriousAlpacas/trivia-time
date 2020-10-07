@@ -4,18 +4,21 @@ class Timer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            timer: 5,
+            timer: 30,
             start: true
         }
     }
     // Create a timer that counts down from 30 seconds - needs to be tied to the Category Component so once category is picked, timer starts
-    // componentDidMount(){
-    //     this.myInterval = setInterval( () => {
-    //         this.setState({
-    //             timer: this.state.timer - 1
-    //         })
-    //     }, 1000)
-    // }
+    componentDidMount(){
+        let myInterval = setInterval( () => {
+            this.setState({
+                timer: this.state.timer - 1
+            })
+        }, 1000)
+        this.setState({
+            myInterval: myInterval
+        })
+    }
     // ComponentDidUpdate kicks in when state is changed
     // Score state will update which will trigger this - check Category.js
     componentDidUpdate() {
@@ -26,7 +29,7 @@ class Timer extends Component {
                 timer: 30,
                 start: false
             })
-            clearInterval();
+            clearInterval(this.state.myInterval);
             //Then go to the next question
             // this.props.stopTime();
         }
@@ -57,7 +60,7 @@ class Timer extends Component {
         return (
             <>
                 {/* <button onClick={this.startQuiz}>Start Quiz</button> */}
-                {this.startQuiz}
+                {/* {this.startQuiz} */}
                 <p>{this.state.start === true ? timer() : "Time's Up!"}</p>
             </>
         )
