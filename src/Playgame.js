@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Timer from './Timer.js';
+import ScoreBoard from './ScoreBoard.js'
+
 // Started the current game at current Player at 0 which is the first player.
 // The current question for the player is 0 too.
 class Playgame extends Component {
@@ -85,7 +87,7 @@ class Playgame extends Component {
 
             const player = this.props.players[this.state.currentPlayer];
             if (!player) {
-                return <div>No player</div>;
+                return <ScoreBoard playerNumber={this.props.players} handleReset={this.props.reset}/>
             }
             return (
                 <>
