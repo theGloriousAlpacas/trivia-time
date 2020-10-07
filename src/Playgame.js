@@ -10,7 +10,9 @@ class Playgame extends Component {
         super();
         this.state = {
             currentPlayer: 0,
-            currentQuestion: 0
+            currentQuestion: 0,
+            time: '',
+            quiz: false
         };
     }
 
@@ -63,9 +65,9 @@ class Playgame extends Component {
             const player = this.props.players[this.state.currentPlayer];
 
             // If there is no player number, display "no player"
-                // This is at the end of the game when there are no more players to play - this where we'll route to the scoreboard
+            // This is at the end of the game when there are no more players to play - this where we'll route to the scoreboard
             if (!player) {
-                return <div>No player</div> 
+                return <div>No player</div>
             }
 
             // question = the player's current question
@@ -73,7 +75,7 @@ class Playgame extends Component {
             // console.log(question)
 
             // This show all 4 answers brought back from the API - 3 incorrect and 1 correct
-                // 3 incorrect answers are in an array so we are spreading it
+            // 3 incorrect answers are in an array so we are spreading it
             const allAnswers = [...question.incorrect_answers, question.correct_answer]
 
             // Shuffling the answers using the shuffleArray method so the last answer isn't always the right one
@@ -81,7 +83,7 @@ class Playgame extends Component {
 
             return <div>
                 {/* Shows current player's name they entered */}
-                <p>Player {player.name}</p> 
+                <p>Player {player.name}</p>
 
                 {/* Question #: question text from API call */}
                 <h2>{`Question ${this.state.currentQuestion + 1} : ${question.question}`}</h2>
@@ -90,7 +92,7 @@ class Playgame extends Component {
                 {allAnswers.map((answer) => {
                     // console.log(this);
                     // When a button is clicked, run onAnswerClicked function which checks if it's right or wrong
-                        // first param is the question, second is an answer param
+                    // first param is the question, second is an answer param
                     return <button onClick={() => this.onAnswerClicked(question, answer)}>
                         {answer}
                     </button>
@@ -100,16 +102,36 @@ class Playgame extends Component {
         }
     }
 
+    stopTime = () => {
+
+        this.setState({
+            currentPlayer: this.state.currentPlayer + 1,
+            quiz: false
+        })
+
+        return (
+            <p>Time is up</p>
+        )
+    }
+
+    showQuiz = () => {
+        this.setState({
+            quiz: true
+        })
+    }
+
     render() {
         return (
             <div>
-                {this.showQuestions()}
+                <button onClick={this.showQuiz}>PLAY</button>
+
+                {this.state.quiz ? (this.showQuestions()
+                ) : null}
+
+                {this.state.quiz ? (< Timer stopTime={this.stopTime} />) : null}
             </div>
         )
-
-
     }
-
 }
 
 export default Playgame;

@@ -66,11 +66,11 @@ class Category extends Component {
         console.log(questions)
 
         const newInfo = playerInfo
-        for(let i = 0; i < questions.length/3; i++) {
+        for (let i = 0; i < questions.length / 3; i++) {
             let count = 0;
             const arr = [];
             while (count < 3) {
-                let x = i*3 + count;
+                let x = i * 3 + count;
                 arr.push(res[x]);
                 count++;
             }
@@ -95,9 +95,6 @@ class Category extends Component {
         //     newInfo[2].questions = [questions[6], questions[7], questions[8]]
         //     newInfo[3].questions = [questions[9], questions[10], questions[11]]
         // }
-
-
-        console.log(newInfo)
 
         this.setState({
             players: newInfo
