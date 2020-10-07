@@ -33,7 +33,7 @@ img {
 }
 
 .App {
-  background-image: url(./trivia-time-bg-01.png);
+  background-image: url(./background-2-1.png);
   background-repeat: repeat;
   background-position: center;
   background-size: cover;
@@ -47,9 +47,9 @@ p {
 /*      HEADER       */
 /*********************/
 
-header {
+/* header {
   background-color: #6197e8;
-}
+} */
 
 .headerContainer {
   display: flex;
