@@ -1,92 +1,126 @@
 import React, { Component } from 'react';
-import Timer from './Timer'
+import Timer from './Timer.js';
+import ScoreBoard from './ScoreBoard.js'
 
 // Started the current game at current Player at 0 which is the first player.
 // The current question for the player is 0 too.
 class Playgame extends Component {
-
     constructor() {
         super();
         this.state = {
+            cleanTheScreen: false,
             currentPlayer: 0,
-            currentQuestion: 0
+            answeredQuestionTracker: [false, false, false],
         };
     }
 
-    onAnswerClicked = (question, answer) => {
-        console.log(question, answer);
-        console.log(answer === question.correct_answer)
-
-        let nextPlayer = this.state.currentPlayer;
-        let nextQuestionPosition = this.state.currentQuestion + 1;
-        if (nextQuestionPosition > 2) {
-            nextQuestionPosition = 0;
-            nextPlayer = nextPlayer + 1;
-        }
-
+    componentDidMount = () => {
         this.setState({
-            currentPlayer: nextPlayer,
-            currentQuestion: nextQuestionPosition
+            players: this.props.players
         })
     }
 
-    //https://stackoverflow.com/a/12646864
-    /* Randomize array in-place using Durstenfeld shuffle algorithm */
-    shuffleArray = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            const temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
+    handleNextPlayer = () => {
+        this.setState({
+            cleanTheScreen: true,
+            currentPlayer: this.state.currentPlayer + 1,
+            answeredQuestionTracker: [false, false, false],
+        })
+
+        const div1 = document.querySelector(".answer1")
+        const div2 = document.querySelector(".answer2")
+        const div3 = document.querySelector(".answer3")
+
+        const divArray = [div1, div2, div3]
+        console.log(divArray)
+
+        divArray.forEach((div) => {
+            div.classList.toggle("parentHide")
+        })
+
+        const questionDiv = document.querySelector('.questionDiv')
+        questionDiv.classList.toggle('questionDivHide')
+    }
+
+    onAnswerClicked = (e, question, answer, questionNumber) => {
+        const parentDiv = e.target.parentNode
+
+        if (!this.state.answeredQuestionTracker[questionNumber]) {
+            let player = this.props.players[this.state.currentPlayer];
+            if (answer === question.correct_answer) {
+                player.score++;
+                let answeredQuestionTracker = this.state.answeredQuestionTracker;
+                answeredQuestionTracker[questionNumber] = true;
+                this.setState({
+                    answeredQuestionTracker: answeredQuestionTracker,
+
+                });
+            }
         }
+
+        parentDiv.classList.toggle("parentHide")
+    }
+
+    // updatedPlayersInformation = (e, players) => {
+    //     e.preventDefault();
+    //     this.setState({
+    //       players: players
+    //     })
+    //   }
+
+    timerFunction = () => {
+        const questionDiv = document.querySelector('.questionDiv')
+        questionDiv.classList.toggle("questionDivHide")
     }
 
     showQuestions = () => {
-        console.log(this.props.players)
+        console.log("players:", this.props.players);
         if (!this.props.players || !this.props.players[0].questions) {
-            console.log("Pick your categories")
-            return <></>
+            console.log("Pick your categories");
+            return <></>;
+        } else if (this.state.cleanTheScreen) {
+            this.setState({
+                cleanTheScreen: false
+            });
+            return <></>;
         } else {
-            console.log(this.props.players)
+
             const player = this.props.players[this.state.currentPlayer];
-
             if (!player) {
-                return <div>No player</div>
+                return <ScoreBoard playerNumber={this.props.players} handleReset={this.props.reset}/>
             }
+            return (
+                <>
+                    <div className="questionDiv">
+                        <p>Player {player.name}</p>
+                        <Timer stopTime={this.timerFunction} />
+                        {player.questions.map((question, index) => {
+                            return (<div>
+                                <h2>{`Question ${index + 1} : ${question.question}`}</h2>
+                                <div className={`answer${index + 1}`}>
+                                    {question.allAnswers.map((answer) => {
+                                        return (
+                                            <button onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
+                                                {answer}</button>
+                                        )
+                                    })}
+                                </div>
+                            </div>)
+                        })}
 
-            const question = player.questions[this.state.currentQuestion];
-            // console.log(question)
-            const allAnswers = [...question.incorrect_answers, question.correct_answer]
-            this.shuffleArray(allAnswers)
-            return <div>
-                <p>Player {player.name}</p>
-                <h2>{`Question ${this.state.currentQuestion + 1} : ${question.question}`}</h2>
-                {allAnswers.map((answer) => {
-                    // console.log(this);
-                    return <button onClick={() => this.onAnswerClicked(question, answer)}>
-                        {answer}
-                    </button>
-                })}
-            </div>
-                ;
+                    </div>
+                    <button onClick={this.handleNextPlayer} >Next Player</button>
+                </>
+            )
         }
-    }
-
+    };
     render() {
-        // return this.showQuestions();
-        return (
-            <div>
-
-                {this.props.title}
-                <h1>PLAYYYYY</h1>
-                <Timer />
-            </div>
-
-        )
-
-
+        return this.showQuestions();
     }
-
 }
-
 export default Playgame;
+
+
+
+
+

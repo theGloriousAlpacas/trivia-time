@@ -333,3 +333,10 @@ footer a:focus {
   color: #6056f9;
 }
 
+.parentHide {
+  display: none;
+}
+
+.questionDivHide {
+  display: none;
+}

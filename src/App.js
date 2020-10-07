@@ -42,7 +42,8 @@ class App extends Component {
     event.preventDefault();
     this.setState({
       questions: {},
-      players: []
+      players: [],
+      goToPlay: false
     })
   }
 
@@ -56,7 +57,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <div className="App">
 
           <Header />
@@ -67,23 +68,7 @@ class App extends Component {
               getCategory={this.getCategory} />
           </Route>
 
-          <Route path="/play" render={(props) => <Playgame players={this.state.players} title={`Props through render`} />} />
-
-          {/* <form>
-          <fieldset>
-            <label htmlFor="">Number of players: </label>
-            <select onChange={this.handleChange}>
-              <option disabled selected className="default">Number of Players</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </fieldset>
-        </form> */}
-
-          {/* <Players numberOfPlayers={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
-          {/* <Category playerInfo={this.state.players} getPlayerInformation={this.updatedPlayersInformation} /> */}
+          <Route path="/play" render={(props) => <Playgame players={this.state.players} reset={this.handleReset}/>} />
         </div>
       </Router>
     );

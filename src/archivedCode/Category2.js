@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
-class Category extends Component {
+
+class Category2 extends Component {
     constructor() {
         super();
         this.state = {
@@ -8,17 +9,21 @@ class Category extends Component {
             category: ""
         }
     }
+
+
     generateQuestions(e, playerInfo) {
+
         const selectedCategory = e.target.value
         const numberOfQuestions = playerInfo.length * 3
         // console.log(e.target[1].children);
         // const categoryName = e.target.text
+
         axios({
             url: 'https://opentdb.com/api.php',
             params: {
                 amount: numberOfQuestions,
                 category: selectedCategory,
-                difficulty: 'medium',
+                difficulty: 'easy',
                 type: 'multiple',
                 // encode: 'base64'
             }
@@ -46,24 +51,21 @@ class Category extends Component {
                 const newString = dom.body.textContent;
                 question.question = newString
             })
+
             this.questionsSubmit(res, this.props.playerInfo)
             // this.setState({
             //     category: categoryName
             // })
         })
     }
-    shuffleArray = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            const temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-        }
-        return array;
-    }
+
+    
+
     questionsSubmit = (res, playerInfo) => {
+
         const questions = res
-        console.log(questions)
+
+
         const newInfo = playerInfo
         for(let i = 0; i < questions.length/3; i++) {
             let count = 0;
@@ -77,8 +79,9 @@ class Category extends Component {
             }
             newInfo[i].questions = arr;
         }
-    
-        console.log(newInfo)
+
+       
+
         this.setState({
             players: newInfo
         })
@@ -86,12 +89,12 @@ class Category extends Component {
 
     render() {
         return (
-            <div className="categoryContainer">
-                <form className="categoryForm" onChange={(e) => {
+            <div>
+                <form onChange={(e) => {
                     this.generateQuestions(e, this.props.playerInfo)
                 }}>
-                    <fieldset className="categoryFieldset">
-                        <label className="categoryLabel" htmlFor="">Select Category: </label>
+                    <fieldset>
+                        <label htmlFor="">Select Category: </label>
                         <select>
                             <option disabled selected className="default">Select a Category</option>
                             <option value="9">General Knowledge</option>
@@ -101,10 +104,11 @@ class Category extends Component {
                             <option value="17">Science And Nature</option>
                         </select>
                     </fieldset>
-                    <button className="categoryButton" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>Continue</button>
+                    <button onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>Continue</button>
                 </form>
             </div>
         )
     }
 }
-export default Category;
+
+export default Category2;
