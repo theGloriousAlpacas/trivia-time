@@ -41,7 +41,8 @@ class NameAndAvatars extends Component {
             players.push({
                 id: (i + 1).toString(),
                 img: avatars[i],
-                name: ''
+                name: '',
+                score: 0
             });
         }
         return players;

@@ -10,27 +10,43 @@ class Playgame extends Component {
             answeredQuestionTracker: [false, false, false],
         };
     }
+
+    componentDidMount = () => {
+        this.setState({
+            players: this.props.players
+        })
+    }
+
     handleNextPlayer = () => {
         this.setState({
             cleanTheScreen: true,
             currentPlayer: this.state.currentPlayer + 1,
-            answeredQuestionTracker: [false, false, false]
+            answeredQuestionTracker: [false, false, false],
         })
     }
+
     onAnswerClicked = (question, answer, questionNumber) => {
         if(!this.state.answeredQuestionTracker[questionNumber]) {
             let player = this.props.players[this.state.currentPlayer];
             if (answer === question.correct_answer) {
-                console.log("aNSWER IS CORRECT");
                 player.score++;
                 let answeredQuestionTracker = this.state.answeredQuestionTracker;
                 answeredQuestionTracker[questionNumber]= true;
                 this.setState({
-                    answeredQuestionTracker: answeredQuestionTracker
+                    answeredQuestionTracker: answeredQuestionTracker,
+                    // score: this.state.players[this.state.currentPlayer].score++
                 });                
             }
         }
     }
+
+    // updatedPlayersInformation = (e, players) => {
+    //     e.preventDefault();
+    //     this.setState({
+    //       players: players
+    //     })
+    //   }
+
   showQuestions = () => {
     console.log("players:", this.props.players);
     if (!this.props.players || !this.props.players[0].questions) {
