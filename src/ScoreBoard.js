@@ -16,12 +16,12 @@ class ScoreBoard extends Component {
                     <div className="scoreList">
                         <ul>
                             {/* Number of li's generated = number of players in the game. This info is in state - need to confirm structure*/}
-                            {localPlayers.map((player) => {
+                            {localPlayers.map((player, index) => {
                                 // Variables for specific pieces of info
                                 const name = player.name;
                                 const score = player.score;
                                 return (
-                                    <li>
+                                    <li key={index}>
                                         <div className="results">
                                             <h3>{name}</h3>
                                             <p>{score}</p>

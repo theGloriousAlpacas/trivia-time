@@ -52,6 +52,13 @@ class Category extends Component {
             // })
         })
     }
+
+    componentDidMount() {
+        document
+            .querySelector('.categoryContainer')
+            .scrollIntoView({ behavior: 'smooth' });
+    }
+
     shuffleArray = (array) => {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -65,11 +72,11 @@ class Category extends Component {
         const questions = res
         console.log(questions)
         const newInfo = playerInfo
-        for(let i = 0; i < questions.length/3; i++) {
+        for (let i = 0; i < questions.length / 3; i++) {
             let count = 0;
             const arr = [];
             while (count < 3) {
-                let x = i*3 + count;
+                let x = i * 3 + count;
                 res[x].allAnswers = [...res[x].incorrect_answers, res[x].correct_answer];
                 res[x].allAnswers = this.shuffleArray(res[x].allAnswers);
                 arr.push(res[x]);
@@ -77,13 +84,12 @@ class Category extends Component {
             }
             newInfo[i].questions = arr;
         }
-    
+
         console.log(newInfo)
         this.setState({
             players: newInfo
         })
     };
-
     render() {
         return (
             <div className="categoryContainer">

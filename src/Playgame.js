@@ -78,7 +78,7 @@ class Playgame extends Component {
         } else {
             const player = this.props.players[this.state.currentPlayer];
             if (!player) {
-                return <ScoreBoard playerInformation={this.props.players} handleReset={this.props.reset}/>
+                return <ScoreBoard playerInformation={this.props.players} handleReset={this.props.reset} />
             }
             return (
                 <section className="gameScreen">
@@ -92,21 +92,21 @@ class Playgame extends Component {
                             </div>
 
                             <div className="questionContainer">
-                            
+
                                 {player.questions.map((question, index) => {
                                     return (
                                         <div className="questions">
-                                            <p className="questionText">{`Question ${index + 1} : ${question.question}`}</p>
+                                            <p className="questionText" key={index}>{`Question ${index + 1} : ${question.question}`}</p>
                                             <div className={`answer${index + 1}`}>
                                                 {question.allAnswers.map((answer) => {
                                                     return (
-                                                        <button onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
+                                                        <button key={index} onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
                                                             {answer}</button>
                                                     )
                                                 })}
                                             </div>
                                         </div>)
-                                    })}
+                                })}
                             </div>
                         </div>
                         
@@ -115,12 +115,12 @@ class Playgame extends Component {
                         </div>
 
                     </div>
-                    
+
                 </section>
             )
         }
     };
-    
+
     render() {
         return this.showQuestions();
     }
