@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import Category from '../Category';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React, { Component } from "react";
 
 class NameAndAvatars extends Component {
     constructor() {
@@ -13,8 +11,8 @@ class NameAndAvatars extends Component {
 
     componentDidMount() {
         document
-        .querySelector('.avatarSection')
-        .scrollIntoView({ behavior: 'smooth' });
+        .querySelector(".avatarSection")
+        .scrollIntoView({ behavior: "smooth" });
     }
 
     getAvatars = () => {
@@ -45,7 +43,7 @@ class NameAndAvatars extends Component {
             players.push({
                 id: (i + 1).toString(),
                 img: avatars[i],
-                name: '',
+                name: "",
                 score: 0,
                 valid: false
             });

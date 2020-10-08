@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import Timer from './Timer.js';
-import ScoreBoard from './ScoreBoard.js'
+import React, { Component } from "react";
+import Timer from "./Timer.js";
+import ScoreBoard from "./ScoreBoard.js"
+
 // Started the current game at current Player at 0 which is the first player.
-// The current question for the player is 0 too.
+    // The current question for the player is 0 too.
 class Playgame extends Component {
     constructor() {
         super();
@@ -18,8 +19,8 @@ class Playgame extends Component {
             players: this.props.players
         })
         document
-            .querySelector('.gameScreen')
-            .scrollIntoView({ behavior: 'smooth' });
+            .querySelector(".gameScreen")
+            .scrollIntoView({ behavior: "smooth" });
     }
 
     handleNextPlayer = () => {
@@ -32,12 +33,12 @@ class Playgame extends Component {
         const div2 = document.querySelector(".answer2")
         const div3 = document.querySelector(".answer3")
         const divArray = [div1, div2, div3]
-        console.log(divArray)
+
         divArray.forEach((div) => {
             div.classList.toggle("parentHide")
         })
-        const questionDiv = document.querySelector('.questionDiv')
-        questionDiv.classList.toggle('questionDivHide')
+        const questionDiv = document.querySelector(".questionDiv")
+        questionDiv.classList.toggle("questionDivHide")
     }
 
     onAnswerClicked = (e, question, answer, questionNumber) => {
@@ -56,22 +57,13 @@ class Playgame extends Component {
         parentDiv.classList.toggle("parentHide")
     }
 
-    // updatedPlayersInformation = (e, players) => {
-    //     e.preventDefault();
-    //     this.setState({
-    //       players: players
-    //     })
-    //   }
-
     timerFunction = () => {
-        const questionDiv = document.querySelector('.questionDiv')
+        const questionDiv = document.querySelector(".questionDiv")
         questionDiv.classList.toggle("questionDivHide")
     }
 
     showQuestions = () => {
-        // console.log("players:", this.props.players);
         if (!this.props.players || !this.props.players[0].questions) {
-            console.log("Pick your categories");
             return <></>;
         } else if (this.state.cleanTheScreen) {
             this.setState({
@@ -109,7 +101,7 @@ class Playgame extends Component {
                                                 })}
                                             </div>
                                         </div>)
-                                })}
+                                    })}
                             </div>
                         </div>
 

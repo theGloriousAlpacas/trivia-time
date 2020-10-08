@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 
 class ScoreBoard extends Component {
@@ -15,11 +15,11 @@ class ScoreBoard extends Component {
                     <h2>Results</h2>
                     <div className="scoreList">
                         <ul>
-                            {/* Number of li's generated = number of players in the game. This info is in state - need to confirm structure*/}
                             {localPlayers.map((player, index) => {
-                                // Variables for specific pieces of info
+
                                 const name = player.name;
                                 const score = player.score;
+                                
                                 return (
                                     <li key={index}>
                                         <div className="results">
@@ -31,7 +31,7 @@ class ScoreBoard extends Component {
                             })}
                         </ul>
                     </div>
-                    {/* Play Again button - sets state to original state (empty) */}
+
                     <button className="replay" onClick={this.props.handleReset}><Link to="/">Quiz Your Friends Again!</Link></button>
                 </div>
             </section>

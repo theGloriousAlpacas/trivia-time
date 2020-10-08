@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import axios from "axios";
 class Category extends Component {
     constructor() {
@@ -11,22 +11,19 @@ class Category extends Component {
     generateQuestions(e, playerInfo) {
         const selectedCategory = e.target.value
         const numberOfQuestions = playerInfo.length * 3
-        // console.log(e.target[1].children);
-        // const categoryName = e.target.text
+
         axios({
             url: 'https://opentdb.com/api.php',
             params: {
                 amount: numberOfQuestions,
                 category: selectedCategory,
-                difficulty: 'medium',
-                type: 'multiple',
-                // encode: 'base64'
+                difficulty: "medium",
+                type: "multiple",
             }
         }).then(response => {
             const res = response.data.results;
-            console.log('this is the data from the api', res);
-            // Use DOMParser to get real string
-            //https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+
+            // Useing DOMParser to get a string without crazy characters
             const parser = new DOMParser();
             res.map((question) => {
                 question.incorrect_answers.forEach((incorrectAnswer, index) => {
@@ -36,7 +33,6 @@ class Category extends Component {
                 });
                 const oldString = question.correct_answer
                 const dom = parser.parseFromString(oldString, "text/html")
-                // console.log(dom)
                 const newString = dom.body.textContent;
                 question.correct_answer = newString
             })
@@ -52,8 +48,8 @@ class Category extends Component {
 
     componentDidMount() {
         document
-            .querySelector('.categoryContainer')
-            .scrollIntoView({ behavior: 'smooth' });
+            .querySelector(".categoryContainer")
+            .scrollIntoView({ behavior: "smooth" });
     }
 
     shuffleArray = (array) => {
@@ -67,8 +63,8 @@ class Category extends Component {
     }
     questionsSubmit = (res, playerInfo) => {
         const questions = res
-        console.log(questions)
         const newInfo = playerInfo
+
         for (let i = 0; i < questions.length / 3; i++) {
             let count = 0;
             const arr = [];
@@ -107,7 +103,6 @@ class Category extends Component {
 
                     {this.state.players.length !== 0 ? <button className="categoryName" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>It's Time For the Showdown!</button> : null}
 
-                    {/* <button className="categoryName" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>It's Time For the Showdown!</button> */}
                 </form>
             </div>
         )

@@ -1,11 +1,9 @@
-// Mini App.js that will take info from NumberOf Players & Names & Avatars
+// This will take info from NumberOf Players & Names & Avatars
 
 import React, { Component } from "react";
-import NumberOfPlayers from './NumberOfPlayers.js';
-import NamesAndAvatars from './NamesAndAvatars.js';
+import NumberOfPlayers from "./NumberOfPlayers.js";
+import NamesAndAvatars from "./NamesAndAvatars.js";
 import Category from "../Category.js";
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
-import Playgame from '../Playgame'
 
 class PlayerInformation extends Component {
     constructor() {

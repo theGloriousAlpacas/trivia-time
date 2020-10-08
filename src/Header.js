@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import logo from './triviaTimeLogo.png';
-
-// Function component because all it will do is display info on the page
+import React, { Component } from "react";
+import logo from "./triviaTimeLogo.png";
 
 const Header = () => {
     return(
