@@ -69,8 +69,7 @@ class App extends Component {
           </Route>
 
           <Route path="/play" render={(props) => <Playgame players={this.state.players} reset={this.handleReset}/>} />
-
-          
+          <Route render={() => <Redirect to={{ pathname: "/" }} />} />
         </div>
       </Router>
     );

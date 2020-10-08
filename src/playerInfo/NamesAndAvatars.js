@@ -7,8 +7,7 @@ class NameAndAvatars extends Component {
         super();
         this.state = {
             players: [],
-            isShowingAvatars: false,
-            isShowingSubmit: false,
+            isShowingAvatars: false
         };
     }
 
@@ -27,7 +26,6 @@ class NameAndAvatars extends Component {
             let players = this.createPlayers(numberOfPlayers);
             this.setState({
                 isShowingAvatars: true,
-                isShowingSubmit: true,
                 players: players
             });
         }
@@ -42,7 +40,8 @@ class NameAndAvatars extends Component {
                 id: (i + 1).toString(),
                 img: avatars[i],
                 name: '',
-                score: 0
+                score: 0,
+                valid: false
             });
         }
         return players;
@@ -63,40 +62,41 @@ class NameAndAvatars extends Component {
         return array.slice(0,size);
     }
 
-    handleNumberOfUsersClicked() {
-        this.setState({isShowingSubmit: true});
-    }
-
-    handleSubmitClicked(e) {
-        this.setState({isShowingSubmit: false});
-    }
-
-    // handleFormSubmit = (e) => {
-    //   e.preventDefault();
-    //   console.log(e.target.length);
-    //   for(let i=0; i < e.target.length-1; i++) {
-    //     const id = e.target[i].id;
-    //     const name = e.target[i].value;
-    //     this.setState( state => {
-    //         let found = state.players.find(player => player.id === id);
-    //         if(found) {
-    //             found.name = name;
-    //         }
-    //     });
-    //   }
-    //   console.log(this.state.players);
-    // }
-     handleFormSubmit = (e) => {
-     e.preventDefault();
-     for(let i=0; i<e.target.length-1; i++) {
-        let index = e.target[i].id - 1;
-        let name = e.target[i].value;
+    handleChange = (e) => {
+        let index = e.target.id - 1;
+        let name = e.target.value;
         this.setState((state) => {
-            state.players[index].name = name;
-        });         
-     }
-     console.log(this.state.players);
-   };
+            state.players[index].valid = (name && name.length !== 0);
+        });
+    }
+
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+
+        let formIsValid = this.validateForm(this.state.players);
+        this.props.playerInformation(this.state.players, formIsValid);
+       
+        if (formIsValid) {
+            for(let i=0; i<e.target.length-1; i++) {
+                let index = e.target[i].id - 1;
+                let name = e.target[i].value;
+                this.setState((state) => {
+                    state.players[index].name = name;
+                });         
+            }
+        } else {
+            alert("Slow your roll! Enter some names first!");
+        }
+    };
+
+    validateForm = (players) => {
+        for(let i=0; i< players.length; i++) {
+            if(!players[i].valid) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     generatePlayers = () => {
         if (this.state.isShowingAvatars) {
@@ -124,8 +124,8 @@ class NameAndAvatars extends Component {
             <form onSubmit={this.handleFormSubmit} className="numberOfPlayersSubmit">
               {this.generatePlayers()}
               {!this.state.isShowingAvatars 
-                    ? (<button type="button" className="playersButton" onClick={(e) => this.updateState(e, this.props.numberOfPlayers)}>Go!</button>) 
-                    : (<button type="submit" className="playersButton" onClick={(e) => this.props.playerInformation(this.state.players)}>Submit</button>)
+                    ? (<button type="button" onClick={(e) => this.updateState(e, this.props.numberOfPlayers)}>Double Check You Have Enough Friends!</button>) 
+                    : (<button type="submit">Let's Battle!</button>)
               }
             </form>
           </div>

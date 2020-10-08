@@ -101,7 +101,7 @@ class Category extends Component {
                             <option value="17">Science And Nature</option>
                         </select>
                     </fieldset>
-                    <button className="categoryButton" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>Continue</button>
+                    <button className="categoryName" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>It's Time For the Showdown!</button>
                 </form>
             </div>
         )

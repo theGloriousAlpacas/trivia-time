@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom
 
 
 class ScoreBoard extends Component {
-
     render() {
-        
+        let localPlayers = this.props.playerInformation;
+        localPlayers.sort((a, b) => b.score - a.score);
         return (
             <section className="finalResults">
 
@@ -40,7 +40,6 @@ class ScoreBoard extends Component {
             </section>
         )
     }
-    
 }
 
 
