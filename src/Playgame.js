@@ -90,18 +90,18 @@ class Playgame extends Component {
 
                                 {player.questions.map((question, index) => {
                                     return (
-                                        <div className="questions">
+                                        <div className="questions" key={index}>
                                             <p className="questionText" key={index}>{`Question ${index + 1} : ${question.question}`}</p>
                                             <div className={`answer${index + 1}`}>
-                                                {question.allAnswers.map((answer) => {
+                                                {question.allAnswers.map((answer, indexA) => {
                                                     return (
-                                                        <button key={index} onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
+                                                        <button key={`${index}${indexA}`} onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
                                                             {answer}</button>
                                                     )
                                                 })}
                                             </div>
                                         </div>)
-                                    })}
+                                })}
                             </div>
                         </div>
 
