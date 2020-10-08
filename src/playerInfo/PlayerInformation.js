@@ -22,34 +22,21 @@ class PlayerInformation extends Component {
             numberOfPlayers: numberOfPlayers
         })
     }
-    getPlayerInformation = (players) => {
-
+    getPlayerInformation = (players, formIsValid) => {
         this.setState({
             players: players,
-            goToCategory: true
+            goToCategory: formIsValid
         })
     }
-    // getCategory = (e, players) => {
-    //     e.preventDefault();
-    //     this.setState({
-    //         players: players,
-    //         goToPlay: true
-    //     })
-    // }
 
     render() {
         return (
             <div>
                 <NumberOfPlayers numberOfPlayers={this.getNumberOfPlayers} />
                 <NamesAndAvatars numberOfPlayers={this.state.numberOfPlayers} playerInformation={this.getPlayerInformation} />
-                {this.state.goToCategory === true ? (<Category playerInfo={this.state.players} getPlayerInformation={this.props.getCategory} />) : null}
-
-
-                {/* <Link to="/play">click here</Link> */}
-
-
-
-                {/* // <Route path="/Play" render={(this.state.players) => <Playgame {...this.state.players} title={'Playgame'}/>} /> */}
+                {this.state.goToCategory === true 
+                    ? (<Category playerInfo={this.state.players} getPlayerInformation={this.props.getCategory} />) 
+                    : null}
             </div>
         )
     }

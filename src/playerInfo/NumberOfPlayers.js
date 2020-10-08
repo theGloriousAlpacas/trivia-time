@@ -8,9 +8,9 @@ class HowManyPlayers extends Component {
         return (
           <form>
             <fieldset>
-              <label htmlFor="">Number of players: </label>
+              <label htmlFor="">How many are playing?! </label>
               <select onChange={this.handleChange}>
-                <option value="">Number of Players</option>
+                <option value="">Number of Friends!</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

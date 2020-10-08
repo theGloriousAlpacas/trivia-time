@@ -87,12 +87,12 @@ class Playgame extends Component {
 
             const player = this.props.players[this.state.currentPlayer];
             if (!player) {
-                return <ScoreBoard playerNumber={this.props.players} handleReset={this.props.reset}/>
+                return <ScoreBoard playerInformation={this.props.players} handleReset={this.props.reset}/>
             }
             return (
                 <>
                     <div className="questionDiv">
-                        <p>Player {player.name}</p>
+                        <p>Player Up to Bat: {player.name}</p>
                         <Timer stopTime={this.timerFunction} />
                         {player.questions.map((question, index) => {
                             return (<div>
@@ -109,7 +109,7 @@ class Playgame extends Component {
                         })}
 
                     </div>
-                    <button onClick={this.handleNextPlayer} >Next Player</button>
+                    <button onClick={this.handleNextPlayer}>Next Player!</button>
                 </>
             )
         }
