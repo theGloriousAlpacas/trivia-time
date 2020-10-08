@@ -87,7 +87,7 @@ class Playgame extends Component {
 
             const player = this.props.players[this.state.currentPlayer];
             if (!player) {
-                return <ScoreBoard playerNumber={this.props.players} handleReset={this.props.reset}/>
+                return <ScoreBoard playerInformation={this.props.players} handleReset={this.props.reset}/>
             }
             return (
                 <>
