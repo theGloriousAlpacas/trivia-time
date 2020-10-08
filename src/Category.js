@@ -47,9 +47,6 @@ class Category extends Component {
                 question.question = newString
             })
             this.questionsSubmit(res, this.props.playerInfo)
-            // this.setState({
-            //     category: categoryName
-            // })
         })
     }
 
@@ -85,11 +82,11 @@ class Category extends Component {
             newInfo[i].questions = arr;
         }
 
-        console.log(newInfo)
         this.setState({
             players: newInfo
         })
     };
+
     render() {
         return (
             <div className="categoryContainer">
@@ -107,7 +104,10 @@ class Category extends Component {
                             <option value="17">Science And Nature</option>
                         </select>
                     </fieldset>
-                    <button className="categoryName" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>It's Time For the Showdown!</button>
+
+                    {this.state.players.length !== 0 ? <button className="categoryName" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>It's Time For the Showdown!</button> : null}
+
+                    {/* <button className="categoryName" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>It's Time For the Showdown!</button> */}
                 </form>
             </div>
         )

@@ -17,6 +17,10 @@ class Playgame extends Component {
         this.setState({
             players: this.props.players
         })
+
+        document
+            .querySelector('.gameScreen')
+            .scrollIntoView({ behavior: 'smooth' });
     }
 
     handleNextPlayer = () => {

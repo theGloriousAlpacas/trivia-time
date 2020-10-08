@@ -63,7 +63,7 @@ class Timer extends Component {
             <>
                 {/* <button onClick={this.startQuiz}>Start Quiz</button> */}
                 {/* {this.startQuiz} */}
-                <p>{this.state.start === true ? timer() : "Time's Up!"}</p>
+                <p>{this.state.start ? timer() : "Time's Up!"}</p>
             </>
         )
     }
