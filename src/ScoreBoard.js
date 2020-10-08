@@ -7,17 +7,16 @@ class ScoreBoard extends Component {
     render() {
         
         return (
+            <section className="finalResults">
 
-            <section className="results">
                 <div className="scoreBoard">
                     <h2>Results</h2>
         
                     <div className="scoreList">
                         <ul>
                             {/* Number of li's generated = number of players in the game. This info is in state - need to confirm structure*/}
-                        {this.props.playerNumber.map((player) => {
 
-                            {this.state.players.map((player) => {
+                            {this.props.playerNumber.map((player) => {
 
                                 // Variables for specific pieces of info
                                 const name = player.name;
@@ -25,7 +24,7 @@ class ScoreBoard extends Component {
 
                                 return (
                                     <li>
-                                        <div className="playerScores">
+                                        <div className="results">
                                             <h3>{name}</h3>
                                             <p>{score}</p>
                                         </div>
@@ -34,11 +33,11 @@ class ScoreBoard extends Component {
                             })}
                         </ul>
                     </div>
-    
-    
-                {/* Play Again button - sets state to original state (empty) */}
-                <button onClick={this.props.handleReset}><Link to="/">Play Again?</Link></button>
-            </div>
+        
+                    {/* Play Again button - sets state to original state (empty) */}
+                    <button className="replay" onClick={this.props.handleReset}><Link to="/">Play Again?</Link></button>
+                </div>
+            </section>
         )
     }
     

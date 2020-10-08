@@ -90,27 +90,41 @@ class Playgame extends Component {
                 return <ScoreBoard playerNumber={this.props.players} handleReset={this.props.reset}/>
             }
             return (
-                <>
-                    <div className="questionDiv">
-                        <p>Player {player.name}</p>
-                        <Timer stopTime={this.timerFunction} />
-                        {player.questions.map((question, index) => {
-                            return (<div>
-                                <h2>{`Question ${index + 1} : ${question.question}`}</h2>
-                                <div className={`answer${index + 1}`}>
-                                    {question.allAnswers.map((answer) => {
-                                        return (
-                                            <button onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
-                                                {answer}</button>
-                                        )
-                                    })}
+                <section className="gameScreen">
+                    <div className="wrapper">
+                        <div className="questionDiv">
+                            <div className="turnDetails">
+                                <p className="playerName">Player: {player.name}</p>
+                                <div className="timerBackground">
+                                    <Timer stopTime={this.timerFunction} />
                                 </div>
-                            </div>)
-                        })}
+                                
+                            </div>
 
+                            <div className="questionContainer">
+        
+                                {player.questions.map((question, index) => {
+                                    return (
+                                        <div className="questions">
+                                            <p className="questionText">{`Question ${index + 1} : ${question.question}`}</p>
+                                            <div className={`answer${index + 1}`}>
+                                            {question.allAnswers.map((answer) => {
+                                                return (
+                                                    <button onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
+                                                        {answer}</button>
+                                                )
+                                            })}
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+
+                            </div>
+                            <button className="nextPlayer" onClick={this.handleNextPlayer}>Next Player</button>
+                        </div>
+                        
                     </div>
-                    <button onClick={this.handleNextPlayer} >Next Player</button>
-                </>
+                </section>
             )
         }
     };
