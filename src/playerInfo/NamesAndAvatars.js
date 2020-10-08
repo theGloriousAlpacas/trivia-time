@@ -11,6 +11,12 @@ class NameAndAvatars extends Component {
         };
     }
 
+    componentDidMount() {
+        document
+        .querySelector('.avatarSection')
+        .scrollIntoView({ behavior: 'smooth' });
+    }
+
     getAvatars = () => {
         return [
         "https://avatars.dicebear.com/api/bottts/example.svg?options[colors][]=blue",
@@ -120,7 +126,7 @@ class NameAndAvatars extends Component {
 
     render() {
         return (
-          <div>
+          <div className="avatarSection">
             <form onSubmit={this.handleFormSubmit} className="numberOfPlayersSubmit">
               {this.generatePlayers()}
               {!this.state.isShowingAvatars 
