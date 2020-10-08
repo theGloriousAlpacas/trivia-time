@@ -111,8 +111,12 @@ class Playgame extends Component {
                                         </div>)
                                 })}
                             </div>
-                            <button onClick={this.handleNextPlayer}>Next Player!</button>
                         </div>
+                        
+                        <div className="nextButton">
+                            <button className="nextPlayer" onClick={this.handleNextPlayer}>Next Player!</button>
+                        </div>
+
                     </div>
 
                 </section>
