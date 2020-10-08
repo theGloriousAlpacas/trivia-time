@@ -327,11 +327,12 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   padding: 3% 0;
 }
 
 .answer1 button, .answer2 button, .answer3 button {
-  margin: 0 1%;
+  margin: 1% 1%;
 }
 
 .nextButton {
@@ -428,17 +429,17 @@ h2 {
 footer {
   color: white;
   background-color: #EF23B3;
-  /* margin: 5% 0 0 0; */
   padding: 1%;
   text-align: center;
-  /* position: absolute;
-  bottom: 0;
-  width: 100% */
 }
 
 footer a {
   color: white;
   text-decoration: none;
+}
+
+footer p {
+  margin: 1%;
 }
 
 footer a:hover,
@@ -476,5 +477,65 @@ footer a:focus {
     .playerName {
       text-align: center
     }
+}
+
+@media (max-width: 530px) {
+
+  h1 {
+    font-size: 2.5rem
+  }
+
+  .playerName {
+    font-size: 2rem;
+  }
+
+  .timer {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
   
-};
+}
+
+@media (max-width: 530px) {
+
+  .questionText {
+    font-size: 1.5rem;
+  }
+  
+}
+
+@media (max-width: 320px) {
+
+  .logo {
+    max-width: 50%;
+  }
+
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .playerForm {
+    padding: 5%;
+  }
+
+  label {
+    font-size: 1.2rem;
+  }
+
+  button {
+    font-size: 0.8rem;
+  }
+  
+  .playerName {
+    font-size: 1.5rem;
+  }
+
+  .timer {
+    font-size: 2rem;
+  }
+}
+
