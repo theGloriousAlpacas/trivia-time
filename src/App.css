@@ -334,6 +334,11 @@ ul {
   margin: 0 1%;
 }
 
+.nextButton {
+  display: flex;
+  justify-content: center;
+}
+
 .nextPlayer {
   border: 3px solid #6056f9;
   font-size: 1.5rem;
@@ -448,3 +453,28 @@ footer a:focus {
 .questionDivHide {
   display: none;
 }
+
+/*********************/
+/*   MEDIA QUERIES   */
+/*********************/
+
+@media (max-width: 840px) {
+
+    .headerContainer {
+      flex-direction: column;
+    }
+
+    .logo {
+      max-width: 30%;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 3%
+    }
+
+    .playerName {
+      text-align: center
+    }
+  
+};
