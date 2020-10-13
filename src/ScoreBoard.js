@@ -32,7 +32,7 @@ class ScoreBoard extends Component {
                         </ul>
                     </div>
 
-                    <button className="replay" onClick={this.props.handleReset}><Link to="/">Quiz Your Friends Again!</Link></button>
+                    <button className="replay" onClick={this.props.handleReset}><Link to="/">Quiz Your Friendssss Again!</Link></button>
                 </div>
             </section>
         )
