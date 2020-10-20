@@ -95,7 +95,7 @@ class Playgame extends Component {
                                             <div className={`answer${index + 1}`}>
                                                 {question.allAnswers.map((answer, indexA) => {
                                                     return (
-                                                        <button key={`${index}${indexA}`} onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
+                                                        <button className="answerButton" key={`${index}${indexA}`} onClick={(e) => this.onAnswerClicked(e, question, answer, index)}>
                                                             {answer}</button>
                                                     )
                                                 })}
@@ -106,7 +106,7 @@ class Playgame extends Component {
                         </div>
 
                         <div className="nextButton">
-                            <button className="nextPlayer" onClick={this.handleNextPlayer}>Continue</button>
+                            <button className="nextPlayer answerButton" onClick={this.handleNextPlayer}>Continue</button>
                         </div>
 
                     </div>

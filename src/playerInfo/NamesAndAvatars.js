@@ -128,8 +128,8 @@ class NameAndAvatars extends Component {
             <form onSubmit={this.handleFormSubmit} className="numberOfPlayersSubmit">
               {this.generatePlayers()}
               {!this.state.isShowingAvatars 
-                    ? (<button type="button" onClick={(e) => this.updateState(e, this.props.numberOfPlayers)}>Double Check You Have Enough Friends!</button>) 
-                    : (<button type="submit">Let's Battle!</button>)
+                    ? (<button type="button" class="setupButton" onClick={(e) => this.updateState(e, this.props.numberOfPlayers)}>Double Check You Have Enough Friends!</button>) 
+                    : (<button class="setupButton" type="submit">Let's Battle!</button>)
               }
             </form>
           </div>

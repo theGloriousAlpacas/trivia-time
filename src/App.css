@@ -156,11 +156,14 @@ select {
 button { 
   font-family: 'Lato', 'sans-serif';
   color: black;
-  margin: 2% 0;
-  padding: 0.8rem;
   border: 3px solid #EF23B3;
   border-radius: 0.5em;
   background-color: #ffffff;
+}
+
+.setupButton, .answerButton {
+  margin: 2% 0%;
+  padding: 0.8rem;
 }
 
 button:hover,
@@ -404,11 +407,15 @@ h2 {
 .replay {
   border: 3px solid #6056f9;
   font-size: 1.5rem;
+  padding: -20px;
 }
 
 .replay a {
   text-decoration: none;
   color: #000;
+  display: block;
+  width: 100%;
+  padding: 20px;
 }
 
 .replay a:hover,
@@ -518,7 +525,7 @@ footer a:focus {
   }
 
   .playerForm {
-    padding: 5%;
+    padding: 20px;
   }
 
   label {

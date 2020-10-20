@@ -101,7 +101,7 @@ class Category extends Component {
                         </select>
                     </fieldset>
 
-                    {this.state.players.length !== 0 ? <button className="categoryName" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>It's Time For the Showdown!</button> : null}
+                    {this.state.players.length !== 0 ? <button className="categoryName setupButton" onClick={(e) => { this.props.getPlayerInformation(e, this.state.players) }}>It's Time For the Showdown!</button> : null}
 
                 </form>
             </div>
